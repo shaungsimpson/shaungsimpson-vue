@@ -1,8 +1,14 @@
 <script setup>
+import ooLogo from '/src/assets/img/logos/oo-logo.png'
+import buroservLogo from '/src/assets/img/logos/buroserv-logo.png'
+import netopiaLogo from '/src/assets/img/logos/netopia-logo.png'
+import pounceLogo from '/src/assets/img/logos/pounce-logo.png'
+import slLogo from '/src/assets/img/logos/sl-logo.png'
+import resumePdf from '/src/assets/ShaunSimpson-SoftwareEngineer.pdf'
 const jobs = [
     {
         company: 'Online Optimisation',
-        logo: '/src/assets/oo-logo.png',
+        logo: ooLogo,
         position: 'Senior Software Engineer',
         from: {
             date: '2022-09',
@@ -15,7 +21,7 @@ const jobs = [
     },
     {
         company: 'Buroserv',
-        logo: '/src/assets/buroserv-logo.png',
+        logo: buroservLogo,
         position: 'Senior Software Engineer',
         from: {
             date: '2021-11',
@@ -28,7 +34,7 @@ const jobs = [
     },
     {
         company: 'Pounce Marketing',
-        logo: '/src/assets/pounce-logo.png',
+        logo: pounceLogo,
         position: 'Senior Full Stack Developer',
         from: {
             date: '2020-03',
@@ -41,7 +47,7 @@ const jobs = [
     },
     {
         company: 'Online Optimisation',
-        logo: '/src/assets/oo-logo.png',
+        logo: ooLogo,
         position: 'Web Developer',
         from: {
             date: '2019-03',
@@ -54,7 +60,7 @@ const jobs = [
     },
     {
         company: 'Studyladder',
-        logo: '/src/assets/sl-logo.png',
+        logo: slLogo,
         position: 'Web Developer',
         from: {
             date: '2015-01',
@@ -67,7 +73,7 @@ const jobs = [
     },
     {
         company: 'Netopia (prev. Digital Tradies)',
-        logo: '/src/assets/netopia-logo.png',
+        logo: netopiaLogo,
         position: 'Web Developer',
         from: {
             date: '2014-07',
@@ -84,10 +90,10 @@ const jobs = [
 <template>
     <!-- Work section -->
     <div class="space-y-10 lg:pl-16 xl:pl-24">
-        <div class="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+        <div class="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40">
             <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100"><svg viewBox="0 0 24 24" fill="none"
                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
-                    class="h-6 w-6 flex-none">
+                    class="flex-none w-6 h-6">
                     <path d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
                         class="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500">
                     </path>
@@ -99,13 +105,13 @@ const jobs = [
 
                 <li v-for="job in jobs" class="flex gap-4">
                     <div
-                        class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                        <img alt="" width="50" height="50" class="h-10 w-10 rounded-full"
+                        class="relative flex items-center justify-center flex-none w-10 h-10 mt-1 rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                        <img alt="" width="50" height="50" class="w-10 h-10 rounded-full"
                             style="color:transparent" :src="job.logo">
                     </div>
-                    <dl class="flex flex-auto flex-wrap gap-x-2">
+                    <dl class="flex flex-wrap flex-auto gap-x-2">
                         <dt class="sr-only">Company</dt>
-                        <dd class="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                        <dd class="flex-none w-full text-sm font-medium text-zinc-900 dark:text-zinc-100">
                             {{ job.company }}</dd>
                         <dt class="sr-only">Role</dt>
                         <dd class="text-xs text-zinc-500 dark:text-zinc-400">{{ job.position }}</dd>
@@ -118,9 +124,9 @@ const jobs = [
                 </li>
 
             </ol><a
-                class="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"
-                href="#">Download CV<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"
-                    class="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50">
+                class="inline-flex items-center justify-center w-full gap-2 px-3 py-2 mt-6 text-sm font-medium transition rounded-md outline-offset-2 active:transition-none bg-zinc-50 text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group"
+                :href="resumePdf">Download CV<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"
+                    class="w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50">
                     <path d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5" stroke-width="1.5" stroke-linecap="round"
                         stroke-linejoin="round"></path>
                 </svg></a>

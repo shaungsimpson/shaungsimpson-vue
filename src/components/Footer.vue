@@ -17,7 +17,7 @@ const links = [
               <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
                 <div
                   class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                  <a v-for="link in links" class="transition hover:text-teal-500 dark:hover:text-teal-400" href="{{ link.link }}">{{ link.label }}</a>
+                  <a v-for="link in links" class="transition hover:text-emerald-500 dark:hover:text-emerald-400" href="{{ link.link }}">{{ link.label }}</a>
                 </div>
                 <p class="text-sm text-zinc-400 dark:text-zinc-500">© <!-- -->{{ year }}<!-- --> Shaun
                   Simpson. All rights reserved.</p>

@@ -2,23 +2,17 @@
 import TwitterLogo from '@/components/svg/social/TwitterLogo.vue'
 import LinkedInLogo from '@/components/svg/social/LinkedInLogo.vue'
 import GithubLogo from '@/components/svg/social/GithubLogo.vue'
-
-const links = [
-  { link: '/about', label: 'About' },
-  { link: '/articles', label: 'Articles' },
-  { link: '/projects', label: 'Projects' },
-]
 </script>
 
 <template>
-  <div class="mt-6 flex gap-6">
-    <a class="group -m-1 p-1" aria-label="Follow on Twitter" href="https://twitter.com">
+  <div class="flex gap-6 mt-6">
+    <a class="p-1 -m-1 group" aria-label="Follow on Twitter" href="https://twitter.com/shaungsimpson">
       <TwitterLogo />
     </a>
-    <a class="group -m-1 p-1" aria-label="Follow on GitHub" href="https://github.com">
+    <a class="p-1 -m-1 group" aria-label="Find me on Github" href="https://github.com/shaungsimpson">
       <GithubLogo />
     </a>
-    <a class="group -m-1 p-1" aria-label="Follow on LinkedIn" href="https://linkedin.com">
+    <a class="p-1 -m-1 group" aria-label="Find me on LinkedIn" href="https://www.linkedin.com/in/shaun-simpson-66983759/github">
       <LinkedInLogo />
     </a>
   </div>

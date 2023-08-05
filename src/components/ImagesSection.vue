@@ -1,29 +1,39 @@
 <script setup>
+import dragJsImg from '/src/assets/img/pankaj-patel-_SgRNwAVNKw-unsplash.jpg'
+import applicationImg from '/src/assets/img/carlos-muza-hpjSkU2UYSU-unsplash.jpg'
+import devHeadphonesImg from '/src/assets/img/nubelson-fernandes-MuukuDZu3Vs-unsplash.jpg'
+import vueCodeImg from '/src/assets/img/mohammad-rahmani-8qEB0fTe9Vw-unsplash.jpg'
+import coffeeImg from '/src/assets/img/nathan-dumlao-2z3MOB3kfJU-unsplash.jpg'
 const images = [
     {
-        src: 'https://picsum.photos/seed/s/288/320',
-        alt: 'A random placeholder from Lorem Picsum',
-        classes: '-rotate-2',
-    },
-    {
-        src: 'https://picsum.photos/seed/h/288/320',
-        alt: 'A random placeholder from Lorem Picsum',
-        classes: '-rotate-2',
-    },
-    {
-        src: 'https://picsum.photos/seed/a/288/320',
-        alt: 'A random placeholder from Lorem Picsum',
+        src: coffeeImg,
+        alt: 'Photo by Pankaj Patel',
         classes: 'rotate-2',
+        credit: 'Photo by <a href="https://unsplash.com/@nate_dumlao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nathan Dumlao</a> on <a href="https://unsplash.com/photos/2z3MOB3kfJU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
     },
     {
-        src: 'https://picsum.photos/seed/u/288/320',
-        alt: 'A random placeholder from Lorem Picsum',
-        classes: 'rotate-2',
-    },
-    {
-        src: 'https://picsum.photos/seed/n/288/320',
-        alt: 'A random placeholder from Lorem Picsum',
+        src: dragJsImg,
+        alt: 'Photo by Pankaj Patel',
         classes: '-rotate-2',
+        credit: 'Photo by <a href="https://unsplash.com/@nublson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nubelson Fernandes</a> on <a href="https://unsplash.com/photos/MuukuDZu3Vs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
+    },
+    {
+        src: devHeadphonesImg,
+        alt: 'Photo by Pankaj Patel',
+        classes: '-rotate-2',
+        credit: 'Photo by <a href="https://unsplash.com/@pankajpatel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Pankaj Patel</a> on <a href="https://unsplash.com/photos/vxgt_Zu0O00?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
+    },
+    {
+        src: vueCodeImg,
+        alt: 'Photo by Pankaj Patel',
+        classes: 'rotate-2',
+        credit: 'Photo by <a href="https://unsplash.com/@afgprogrammer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mohammad Rahmani</a> on <a href="https://unsplash.com/photos/8qEB0fTe9Vw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
+    },
+    {
+        src: applicationImg,
+        alt: 'Photo by Carlos Muza',
+        classes: '-rotate-2',
+        credit: 'Photo by <a href="https://unsplash.com/@kmuza?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Carlos Muza</a> on <a href="https://unsplash.com/photos/hpjSkU2UYSU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
     },
 ]
 </script>
@@ -31,11 +41,11 @@ const images = [
 <template>
     <!-- Images section -->
     <div class="mt-16 sm:mt-20">
-        <div class="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
+        <div class="flex justify-center gap-5 py-4 -my-4 overflow-hidden sm:gap-8">
             <div v-for="image in images"
                 class="relative aspect-[9/10] ring-2 ring-gray-900 w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl"
                 :class="image.classes">
-                <img :alt="image.alt" class="absolute inset-0 h-full w-full object-cover" style="color:transparent"
+                <img :alt="image.alt" class="absolute inset-0 object-cover w-full h-full" style="color:transparent"
                     :src="image.src">
             </div>
         </div>
