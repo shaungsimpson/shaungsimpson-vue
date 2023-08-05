@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-link {
+    @apply transition text-emerald-500 dark:text-emerald-500 hover:text-emerald-300 dark:hover:text-emerald-300 hover:underline;
+}
