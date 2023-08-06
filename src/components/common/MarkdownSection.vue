@@ -20,5 +20,5 @@ console.log(mdToRender.value)
 </script>
 
 <template>
-    <div class="w-full my-16 text-base prose max-w-none prose-3xl text-zinc-600 dark:text-zinc-400 prose-a:font-semibold prose-a:no-underline" v-html="markdown.render(mdToRender)"></div>
+    <div class="w-full max-w-screen-sm my-16 text-base prose lg:max-w-none text-zinc-600 dark:text-zinc-400" v-html="markdown.render(mdToRender)"></div>
 </template>

@@ -18,7 +18,7 @@ const article = articles.find((article) => article.slug == match)
         <div class="sm:px-8 mt-9">
             <div class="flex w-full mx-auto max-w-7xl lg:px-8">
 
-                <div class="relative px-4 sm:px-8 lg:px-12">
+                <div class="relative w-full px-4 sm:px-8 lg:px-12">
                     <div class="max-w-2xl mx-auto lg:max-w-5xl">
                         <div class="w-full">
 
