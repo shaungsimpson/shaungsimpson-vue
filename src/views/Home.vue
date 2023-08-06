@@ -4,12 +4,13 @@ import ImagesSection from '@/components/ImagesSection.vue'
 import ImageTextBlock from '@/components/common/ImageTextBlock.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
 import WorkSection from '@/components/WorkSection.vue'
+import heroImg from '/src/assets/img/shaun-pilot.jpeg'
 </script>
 
 <template>
     <div class="home">
         <ImageTextBlock title="My name is Shaun Simpson, and I like to build things!"
-            img="\src\assets\img\shaun-pilot.jpeg">
+            :img="heroImg">
             <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">I'm a software engineer from
                 Sydney, Australia. Insert more about blurb here....<br>
                 Microservices internet button static k FIFO Netscape bike-shedding DSL developer site

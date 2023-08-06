@@ -14,14 +14,15 @@ import ArticlesSection from '@/components/ArticlesSection.vue'
                                 Articles
                             </h1>
 
-                            <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">Below you can find a selection of
+                            <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">Below you will find a selection of
                                 articles I've written. Mostly the topics will be along the lines of web application
-                                development, but I may also write about other topics that interest me. techniques and
-                                concepts.
+                                development, but I may also write about other topics, techniques and
+                                concepts that interest me.
                             </p>
 
                             <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">The main focus of my articles will
-                                be to do with Laravel, PHP and Vue as these are the technologies I use and am passionate
+                                be to do with writing code with Laravel, PHP and Vue as these are the technologies I use and
+                                am passionate
                                 about.
                             </p>
 
@@ -29,10 +30,10 @@ import ArticlesSection from '@/components/ArticlesSection.vue'
                                 a blog, as I tend not to crave attention by nature, but I was recently inspired by a Laracon
                                 talk by Aaron Francis, whom I have followed for some time now, called <a class="text-link"
                                     href="https://www.youtube.com/watch?v=2YaEtaXYVtI"
-                                    title='Aaron Francis "Publishing Your Work" - Laracon US 2023 Nashville' target="_blank">"Publishing Your
+                                    title='Aaron Francis "Publishing Your Work" - Laracon US 2023 Nashville'
+                                    target="_blank">"Publishing Your
                                     Work"</a>.
                             </p>
-
 
                         </div>
                     </div>
@@ -45,6 +46,6 @@ import ArticlesSection from '@/components/ArticlesSection.vue'
                 </div>
 
             </div>
-    </div>
+        </div>
 
-</div></template>
+    </div></template>

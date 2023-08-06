@@ -1,9 +1,9 @@
 <script setup>
-import dragJsImg from '/src/assets/img/pankaj-patel-_SgRNwAVNKw-unsplash.jpg'
-import applicationImg from '/src/assets/img/carlos-muza-hpjSkU2UYSU-unsplash.jpg'
-import devHeadphonesImg from '/src/assets/img/nubelson-fernandes-MuukuDZu3Vs-unsplash.jpg'
-import vueCodeImg from '/src/assets/img/mohammad-rahmani-8qEB0fTe9Vw-unsplash.jpg'
-import coffeeImg from '/src/assets/img/nathan-dumlao-2z3MOB3kfJU-unsplash.jpg'
+import dragJsImg from '/src/assets/img/improve-ux.jpg'
+import applicationImg from '/src/assets/img/application-live.jpg'
+import devHeadphonesImg from '/src/assets/img/test-and-refine.jpg'
+import vueCodeImg from '/src/assets/img/building-the-base.jpg'
+import coffeeImg from '/src/assets/img/coffee.jpg'
 const images = [
     {
         src: coffeeImg,
