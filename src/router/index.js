@@ -14,9 +14,15 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
     scrollBehavior(to, from, savedPosition) {
-        return {
-            top: 0,
-            behavior: 'smooth',
+        if (savedPosition) {
+            return savedPosition;
+        }
+        if (to.hash) {
+            return { el: to.hash, behavior: 'smooth' };
+        } else {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 500);
         }
     }
 })
