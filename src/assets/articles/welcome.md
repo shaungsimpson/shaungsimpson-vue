@@ -2,7 +2,7 @@ Hello there.
 
 My name is Shaun and I am software developer living in Sydney, Australia. I have a much beloved wife, two amazing children and an incredibly spoiled and treasured dog. I occasionally build things in the real world such as custom furniture too. I love to BBQ and catch up with friends and family whenever I have time too, preferably with a slow cooking charcoal offset bbq in the background.
 
-I have always shied away from writing a blog, as I tend not to crave attention by nature.Recently I was inspired by a Laracon talk by Aaron Francis, whom I have followed for some time now as he is an AMAZING source of SQL knowledge, called ["Publishing Your Work"](https://www.youtube.com/watch?v=2YaEtaXYVtI). For those of you who may suffer from imposter syndrome, I found it super inspiring.
+I have always shied away from writing a blog, as I tend not to crave attention by nature.Recently I was inspired by a Laracon talk by Aaron Francis, whom I have followed for some time now as he is an **AMAZING** source of SQL knowledge, called ["Publishing Your Work"](https://www.youtube.com/watch?v=2YaEtaXYVtI). For those of you who may suffer from imposter syndrome, I found it super inspiring.
 
 I am not yet certain what exactly I will write in my blog as it is not even live as I write this into a markdown file, but it will definitely focus on toools, techniques and concepts that should hopefully prove useful to anyone who reads it. What I am sure about is that I am not a professional writer, huge shout out to the professional wordsmiths out there, so the content may not be great to start with but I can only get better!
 
