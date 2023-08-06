@@ -10,7 +10,7 @@ const props = defineProps({
 })
 const mdToRender = ref('')
 const markdown = new MarkdownIt()
-const content = await fetch('/src/assets/articles/' + props.source)
+const content = await fetch('/assets/articles/' + props.source)
     .then(res => res.text())
     .catch(err => console.log(err))
 // .then(mdToRender = markdown.render(content))
