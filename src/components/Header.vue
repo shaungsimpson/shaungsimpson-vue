@@ -17,9 +17,9 @@ const links = [
           <div class="relative px-4 sm:px-8 lg:px-12">
             <div class="max-w-2xl mx-auto lg:max-w-5xl">
               <div class="relative flex gap-4">
-                <div class="flex justify-end flex-1 md:justify-center">
+                <div class="flex justify-center flex-1">
 
-                  <nav class="hidden pointer-events-auto md:block">
+                  <nav class="pointer-events-auto">
                     <ul
                       class="flex px-3 text-sm font-medium rounded-full shadow-lg bg-white/90 text-zinc-800 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
                       <li v-for="link in links">
