@@ -1,0 +1,82 @@
+{
+    "jobs": [
+        {
+            "code": "oo",
+            "company": "Online Optimisation",
+            "position": "Senior Software Engineer",
+            "from": {
+                "date": "2022-09",
+                "text": "Sep 2022"
+            },
+            "to": {
+                "date": "2023",
+                "text": "Present"
+            }
+        },
+        {
+            "code": "buroserv",
+            "company": "Buroserv",
+            "position": "Senior Software Engineer",
+            "from": {
+                "date": "2021-11",
+                "text": "Nov 2021"
+            },
+            "to": {
+                "date": "2022-09",
+                "text": "Sep 2022"
+            }
+        },
+        {
+            "code": "pounce",
+            "company": "Pounce Marketing",
+            "position": "Senior Full Stack Developer",
+            "from": {
+                "date": "2020-03",
+                "text": "Mar 2020"
+            },
+            "to": {
+                "date": "2021-11",
+                "text": "Nov 2021"
+            }
+        },
+        {
+            "code": "oo",
+            "company": "Online Optimisation",
+            "position": "Web Developer",
+            "from": {
+                "date": "2019-03",
+                "text": "Mar 2019"
+            },
+            "to": {
+                "date": "2019-12",
+                "text": "Dec 2019"
+            }
+        },
+        {
+            "code": "sl",
+            "company": "Studyladder",
+            "position": "Web Developer",
+            "from": {
+                "date": "2015-01",
+                "text": "Jan 2015"
+            },
+            "to": {
+                "date": "2019-03",
+                "text": "Mar 2019"
+            }
+        },
+        {
+            "code": "netopia",
+            "company": "Netopia (prev. Digital Tradies)",
+            "position": "Web Developer",
+            "from": {
+                "date": "2014-07",
+                "text": "Jul 2015"
+            },
+            "to": {
+                "date": "2015-01",
+                "text": "Jan 2015"
+            }
+        }
+    ]
+}

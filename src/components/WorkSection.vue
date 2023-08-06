@@ -5,86 +5,23 @@ import netopiaLogo from '/src/assets/img/logos/netopia-logo.png'
 import pounceLogo from '/src/assets/img/logos/pounce-logo.png'
 import slLogo from '/src/assets/img/logos/sl-logo.png'
 import resumePdf from '/src/assets/ShaunSimpson-SoftwareEngineer.pdf'
-const jobs = [
-    {
-        company: 'Online Optimisation',
-        logo: ooLogo,
-        position: 'Senior Software Engineer',
-        from: {
-            date: '2022-09',
-            text: 'Sep 2022',
-        },
-        to: {
-            date: '2023',
-            text: 'Present',
-        },
-    },
-    {
-        company: 'Buroserv',
-        logo: buroservLogo,
-        position: 'Senior Software Engineer',
-        from: {
-            date: '2021-11',
-            text: 'Nov 2021',
-        },
-        to: {
-            date: '2022-09',
-            text: 'Sep 2022',
-        },
-    },
-    {
-        company: 'Pounce Marketing',
-        logo: pounceLogo,
-        position: 'Senior Full Stack Developer',
-        from: {
-            date: '2020-03',
-            text: 'Mar 2020',
-        },
-        to: {
-            date: '2021-11',
-            text: 'Nov 2021',
-        },
-    },
-    {
-        company: 'Online Optimisation',
-        logo: ooLogo,
-        position: 'Web Developer',
-        from: {
-            date: '2019-03',
-            text: 'Mar 2019',
-        },
-        to: {
-            date: '2019-12',
-            text: 'Dec 2019',
-        },
-    },
-    {
-        company: 'Studyladder',
-        logo: slLogo,
-        position: 'Web Developer',
-        from: {
-            date: '2015-01',
-            text: 'Jan 2015',
-        },
-        to: {
-            date: '2019-03',
-            text: 'Mar 2019',
-        },
-    },
-    {
-        company: 'Netopia (prev. Digital Tradies)',
-        logo: netopiaLogo,
-        position: 'Web Developer',
-        from: {
-            date: '2014-07',
-            text: 'Jul 2015',
-        },
-        to: {
-            date: '2015-01',
-            text: 'Jan 2015',
-        },
-    },
-]
+import workData from '/src/data/work.json'
+
+const jobs = workData.jobs
+
+function jobLogo( job ) {
+    const logos = {
+        oo: ooLogo,
+        buroserv: buroservLogo,
+        netopia: netopiaLogo,
+        pounce: pounceLogo,
+        sl: slLogo,
+    }
+
+    return logos[job.code]
+}
+
+jobs.forEach( job => job.logo = jobLogo( job ) )
 </script>
 
 <template>
