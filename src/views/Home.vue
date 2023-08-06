@@ -9,14 +9,12 @@ import heroImg from '/src/assets/img/shaun-pilot.jpeg'
 
 <template>
     <div class="home">
-        <ImageTextBlock title="My name is Shaun Simpson, and I like to build things!"
-            :img="heroImg">
-            <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">I'm a software engineer from
-                Sydney, Australia. Insert more about blurb here....<br>
-                Microservices internet button static k FIFO Netscape bike-shedding DSL developer site
-                reliability engineer. Senior-engineer npm mutation observer domain specific language resolve
-                public greenfield documentation driven. Freelancer imperative-mood greedy algorithm dynamic
-                programming inheritance configuration frame rate linked list scalable Ada Lovelace.
+        <ImageTextBlock title="My name is Shaun Simpson, and I like to build things!" :img="heroImg">
+            <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">I'm a software engineer and developer from
+                Sydney, Australia. I work hard designing and building digital solutions for people to help them
+                solve their problems and make their lives easier. I have been working with various digital technologies to
+                help people for the last decade and I love it. I am focused on improving the aesthetics and user experience
+                of software, and I am always looking for new ways to improve my craft.
             </p>
 
             <SocialLinks />
