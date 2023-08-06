@@ -9,10 +9,9 @@ import Footer from '@/components/Footer.vue'
             <div class="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20"></div>
         </div>
     </div>
-    <div class="relative flex flex-col w-full">
+    <div class="relative flex flex-col w-full min-h-screen">
         <Header />
-        <div class="flex-none" style="height:var(--content-offset)"></div>
-        <main class="flex-auto">
+        <main class="grow">
             <router-view v-slot="{ Component }">
                 <transition name="fade" mode="out-in">
                     <component :is="Component" />

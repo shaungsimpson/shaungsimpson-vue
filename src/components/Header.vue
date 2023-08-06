@@ -8,11 +8,10 @@ const links = [
 </script>
 
 <template>
-  <header class="relative z-50 flex flex-col flex-none pointer-events-none"
-    style="height:var(--header-height);margin-bottom:var(--header-mb)">
+  <header class="relative z-50 flex flex-col flex-none pointer-events-none">
 
-    <div class="top-0 z-10 h-16 pt-6" style="position:var(--header-position)">
-      <div class="sm:px-8 top-[var(--header-top,theme(spacing.6))] w-full" style="position:var(--header-inner-position)">
+    <div class="top-0 z-10 h-16 pt-6">
+      <div class="w-full sm:px-8">
         <div class="w-full mx-auto max-w-7xl lg:px-8">
           <div class="relative px-4 sm:px-8 lg:px-12">
             <div class="max-w-2xl mx-auto lg:max-w-5xl">
@@ -23,7 +22,8 @@ const links = [
                     <ul
                       class="flex px-3 text-sm font-medium rounded-full shadow-lg bg-white/90 text-zinc-800 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
                       <li v-for="link in links">
-                        <router-link class="relative block px-3 py-2 transition hover:text-emerald-500 dark:hover:text-emerald-400"
+                        <router-link
+                          class="relative block px-3 py-2 transition hover:text-emerald-500 dark:hover:text-emerald-400"
                           :to="link.link">
                           {{ link.label }}
                         </router-link>
@@ -39,5 +39,5 @@ const links = [
       </div>
     </div>
 
-</header>
+  </header>
 </template>
