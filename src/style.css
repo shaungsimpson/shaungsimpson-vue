@@ -16,3 +16,13 @@ nav .router-link-active,
 nav .router-link-exact-active {
     @apply transition text-emerald-500 dark:text-emerald-500;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.125s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

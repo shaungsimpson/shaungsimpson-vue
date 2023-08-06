@@ -13,7 +13,11 @@ import Footer from '@/components/Footer.vue'
         <Header />
         <div class="flex-none" style="height:var(--content-offset)"></div>
         <main class="flex-auto">
-            <router-view></router-view>
+            <router-view v-slot="{ Component }">
+                <transition name="fade" mode="out-in">
+                    <component :is="Component" />
+                </transition>
+            </router-view>
         </main>
         <Footer />
     </div>
