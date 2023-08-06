@@ -1,7 +1,5 @@
-# Vue 3 + Vite
+# shaungsimpson.com  [![Netlify Status](https://api.netlify.com/api/v1/badges/62a113f4-dc52-4ad6-9133-5848e4cc337c/deploy-status)](https://app.netlify.com/sites/amazing-panini-43b538/deploys)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is the repository for my personal webpage. I built it over the weekend with Vue and deployed it on Netlify.
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This is an always in progress project and mostly it will be a good side project for me to try new things on and write about the things I learn, or share knowledge with others.
