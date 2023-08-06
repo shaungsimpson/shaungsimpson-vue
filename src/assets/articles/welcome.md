@@ -1,0 +1,17 @@
+Hello there.
+
+My name is Shaun and I am software developer living in Sydney, Australia. I have a much beloved wife, two amazing children and an incredibly spoiled and treasured dog. I occasionally build things in the real world such as custom furniture too. I love to BBQ and catch up with friends and family whenever I have time too, preferably with a slow cooking charcoal offset bbq in the background.
+
+I have always shied away from writing a blog, as I tend not to crave attention by nature.Recently I was inspired by a Laracon talk by Aaron Francis, whom I have followed for some time now as he is an **AMAZING** source of SQL knowledge, called ["Publishing Your Work"](https://www.youtube.com/watch?v=2YaEtaXYVtI). For those of you who may suffer from imposter syndrome, I found it super inspiring.
+
+I am not yet certain what exactly I will write in my blog as it is not even live as I write this into a markdown file, but it will definitely focus on toools, techniques and concepts that should hopefully prove useful to anyone who reads it. What I am sure about is that I am not a professional writer, huge shout out to the professional wordsmiths out there, so the content may not be great to start with but I can only get better!
+
+I am a big fan of clean code, using tools to increase efficiency and planning upfront to reduce the work later. It doesn't matter how many times people try to cut corners and save time by skipping tests, proper setup and user acceptance, it never seems to save them time. In fact in my humble experience it always makes things take so much longer than they otherwise could have.
+
+When building applications I like to lean on convention so that other developers don't have to translate what I was thinking when I designed it. Starting with a concrete solid foundation and then ensuring that we can move on to add new features.
+
+In regards to the tools I use, I am primarily a PHP developer. I love Laravel as it really speeds up initial development and I have yet to find a system quite as good for developer experience in any language. I am a huge fan of the TALL stack when it comes to building small programs and proof of concepts. For those of you not aware, TALL stands for [Tailwind](https://tailwindcss.com/), [Alpine](https://alpinejs.dev/), [Laravel](https://laravel.com/) and [Livewire](https://laravel-livewire.com/), and it allows you to make very lightweight but powerful applications, mostly without leaving your template code or PHP. This is great for tinkering or simple deployment applications, but it can and has been used in commercial level applications as well.
+
+When working on a frontend in something a bit more complex, I really love [Vue.js](https://vuejs.org/), as it has a great feel to it, with just the right amount of magic to take the pain out of more complex reactive apps. The composition api has definitely made the experience much nicer to rapidly build out components. I still prefer Laravel as my API backend of choice, but if already provided one REST API solution is probably as good as another. I initially was resistant to frontend frameworks as unec essary complexity, and in many cases that is still true, but the fact that I can host this blog without having to actually pay for and sort out hosting is a good reason to move past that!
+
+If you made it this far, thanks for reading, and you can catch me by clicking on one of the social links at the bottom of the post.
