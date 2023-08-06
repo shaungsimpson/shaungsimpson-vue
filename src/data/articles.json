@@ -1,0 +1,20 @@
+{
+    "articles": [
+        {
+            "link": "/articles/welcome",
+            "published": "2023-08-05",
+            "title": "Welcome",
+            "blurb": "This is just a light welcome post to kick things off and introduce myself and the site.",
+            "slug": "welcome",
+            "mdFile": "welcome.md"
+        },
+        {
+            "link": "/articles/simple-search-helper",
+            "published": "2023-08-06",
+            "title": "A Simple Laravel Search Helper",
+            "blurb": "A simple example to demonstrate how to build a trait that you can reuse in your Laravel controllers to handle nested relation search automagically. I'll also explain why you would use this and not write the logic onto a model trait instead",
+            "slug": "simple-search-helper",
+            "mdFile": "simple-search-helper.md"
+        }
+    ]
+}

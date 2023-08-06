@@ -1,5 +1,22 @@
 <script setup>
-const props = defineProps(['title', 'img'])
+const props = defineProps({
+    title: {
+        type: String,
+    },
+    img: {
+        type: String
+    },
+    height: {
+        type: String,
+        default: 'w-52',
+    },
+    width: {
+        type: String,
+        default: 'w-52'
+    }
+})
+
+const imgClasses = props.height + ' ' + props.width
 </script>
 
 <template>
@@ -23,7 +40,8 @@ const props = defineProps(['title', 'img'])
                 <div class="max-w-2xl mx-auto my-12 lg:my-4 lg:px-12">
 
                     <img alt="" fetchpriority="high" width="512" height="512"
-                        class="object-cover mx-auto rounded-full w-52 h-52 bg-zinc-100 dark:bg-zinc-800"
+                        class="object-cover mx-auto rounded-full bg-zinc-100 dark:bg-zinc-800"
+                        :class="imgClasses"
                         style="color:transparent" :src="img">
 
                 </div>
