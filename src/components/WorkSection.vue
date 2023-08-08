@@ -51,6 +51,7 @@ jobs.forEach( job => job.logo = jobLogo( job ) )
       <ol class="mt-6 space-y-4">
         <li
           v-for="job in jobs"
+          :key="job.code"
           class="flex gap-4"
         >
           <div

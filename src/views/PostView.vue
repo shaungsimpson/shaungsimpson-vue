@@ -3,10 +3,14 @@ import articlesData from '/src/data/articles.json'
 import MarkdownSection from '@/components/common/MarkdownSection.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
 
-const props = defineProps(['slug'])
+const props = defineProps({
+    slug: {
+        type: String,
+        required: true
+    }
+})
 const articles = articlesData.articles
-const match = props.slug
-const article = articles.find((article) => article.slug == match)
+const article = articles.find((article) => article.slug == props.slug)
 
 
 </script>

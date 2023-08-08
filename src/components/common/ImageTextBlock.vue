@@ -2,9 +2,13 @@
 const props = defineProps({
     title: {
         type: String,
+        required: false,
+        default: undefined,
     },
     img: {
-        type: String
+        type: String,
+        required: false,
+        default: undefined,
     },
     height: {
         type: String,
