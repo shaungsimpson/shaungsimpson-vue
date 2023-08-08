@@ -2,26 +2,30 @@
 import { ref } from 'vue'
 import MarkdownIt from 'markdown-it'
 
-const props = {
+const props = defineProps({
     source: {
         type: String,
         required: true
     }
-}
+})
 const mdToRender = ref('')
 const markdown = new MarkdownIt()
-const content = async () => {
-    await fetch('/assets/articles/' + props.source)
-    .then(res => res.text())
-    .catch(err => console.log(err))
+
+let fetchContent = async () => {
+    try {
+        mdToRender.value = await fetch('/assets/articles/' + props.source)
+            .then(res => res.text())
+    } catch (error) {
+        console.warn(error)
+    }
 }
-mdToRender.value = content
+
+fetchContent()
 </script>
 
 <template>
   <div
-    class="w-full max-w-screen-sm my-16 text-base prose prose-strong:dark:text-zinc-400 prose-strong:text-zinc-600 lg:max-w-none text-default"
-  >
-    {{ markdown.render(mdToRender) }}
-  </div>
+    class="md-prose-section"
+    v-html="markdown.render(mdToRender)"
+  />
 </template>

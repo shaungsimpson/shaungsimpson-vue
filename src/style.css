@@ -8,6 +8,9 @@
     }
 }
 
+.md-prose-section {
+  @apply w-full max-w-screen-sm my-16 text-base prose prose-strong:dark:text-zinc-400 prose-strong:text-zinc-600 lg:max-w-none text-default;
+}
 .text-strong {
     @apply text-zinc-800 dark:text-zinc-100;
 }
