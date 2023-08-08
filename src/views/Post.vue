@@ -22,7 +22,7 @@ const article = articles.find((article) => article.slug == match)
                     <div class="max-w-2xl mx-auto lg:max-w-5xl">
                         <div class="w-full">
 
-                            <h1 class="max-w-2xl text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+                            <h1 class="max-w-2xl text-4xl font-bold tracking-tight text-strong sm:text-5xl">
                                 {{ article?.title ?? "I'm sorry Dave, I'm afraid I can't find that" }}
                             </h1>
 

@@ -28,7 +28,7 @@ jobs.forEach( job => job.logo = jobLogo( job ) )
     <!-- Work section -->
     <div class="space-y-10 lg:pl-16 xl:pl-24">
         <div class="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40">
-            <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100"><svg viewBox="0 0 24 24" fill="none"
+            <h2 class="flex text-sm font-semibold text-strong"><svg viewBox="0 0 24 24" fill="none"
                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
                     class="flex-none w-6 h-6">
                     <path d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
@@ -48,12 +48,12 @@ jobs.forEach( job => job.logo = jobLogo( job ) )
                     </div>
                     <dl class="flex flex-wrap flex-auto gap-x-2">
                         <dt class="sr-only">Company</dt>
-                        <dd class="flex-none w-full text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                        <dd class="flex-none w-full text-sm font-medium text-strong">
                             {{ job.company }}</dd>
                         <dt class="sr-only">Role</dt>
-                        <dd class="text-xs text-zinc-500 dark:text-zinc-400">{{ job.position }}</dd>
+                        <dd class="text-xs text-default">{{ job.position }}</dd>
                         <dt class="sr-only">Date</dt>
-                        <dd class="ml-auto text-xs text-zinc-400 dark:text-zinc-500" :aria-label="`${job.from.text} until ${job.to.text}`"><time
+                        <dd class="ml-auto text-xs text-subtle" :aria-label="`${job.from.text} until ${job.to.text}`"><time
                                 :datetime="job.from.date">{{ job.from.text }}</time>
                             <span aria-hidden="true">—</span> <time :datetime="job.to.date">{{ job.to.text }}</time>
                         </dd>

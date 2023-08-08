@@ -27,7 +27,7 @@ const imgClasses = props.height + ' ' + props.width
                 <div class="max-w-2xl mx-auto lg:max-w-6xl">
                     <div class="max-w-2xl xl:max-w-2xl lg:max-w-xl">
 
-                        <h1 v-if="title" class="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+                        <h1 v-if="title" class="text-4xl font-bold tracking-tight text-strong sm:text-5xl">
                             {{ title }}
                         </h1>
                         <slot></slot>

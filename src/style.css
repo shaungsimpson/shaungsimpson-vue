@@ -8,20 +8,41 @@
     }
 }
 
+.text-strong {
+    @apply text-zinc-800 dark:text-zinc-100;
+}
+.text-default {
+    @apply text-zinc-600 dark:text-zinc-400;
+}
+.text-subtle {
+    @apply text-zinc-400 dark:text-zinc-500;
+}
+
+
+.shadow-edge {
+  @apply shadow-lg bg-white/90 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10;
+}
+
 .prose a,
 .text-link {
     @apply transition text-emerald-500 dark:text-emerald-500 hover:text-emerald-300 dark:hover:text-emerald-300 hover:underline;
 }
 
+nav a,
+.theme-toggle {
+  @apply transition text-zinc-800 dark:text-zinc-200 hover:text-emerald-500 dark:hover:text-emerald-400;
+}
 nav .router-link-active,
 nav .router-link-exact-active {
-    @apply transition text-emerald-500 dark:text-emerald-500;
+    @apply transition pointer-events-none text-emerald-500 dark:text-emerald-500;
 }
 
+/* ------------ prose classes ------------------  */
 .prose p {
-  @apply max-w-2xl;
+  @apply max-w-prose;
 }
 
+/* ------------- animations --------------------  */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.125s ease;

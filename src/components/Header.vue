@@ -25,10 +25,10 @@ const links = [
 
                   <nav class="pointer-events-auto">
                     <ul
-                      class="flex px-3 text-sm font-medium rounded-full shadow-lg bg-white/90 text-zinc-800 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+                      class="flex px-3 text-sm font-medium rounded-full shadow-edge">
                       <li v-for="link in links">
                         <router-link
-                          class="relative block px-3 py-2 transition hover:text-emerald-500 dark:hover:text-emerald-400"
+                          class="relative block px-3 py-2"
                           :to="link.link">
                           {{ link.label }}
                         </router-link>
@@ -39,7 +39,7 @@ const links = [
 
                 </div>
                 <button
-                  class="flex p-2 text-sm font-medium rounded-full shadow-lg pointer-events-auto bg-white/90 text-zinc-800 shadow-zinc-800/5 ring-1 ring-zinc-900/25 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10"
+                  class="flex p-2 text-sm font-medium rounded-full pointer-events-auto shadow-edge text-link theme-toggle"
                   @click="toggleDark()">
                   <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
