@@ -18,15 +18,21 @@ const links = [
               <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
                 <nav>
                   <div
-                    class="flex flex-wrap justify-center text-sm font-medium gap-x-6 gap-y-1 ">
-
-                    <router-link v-for="link in links" :to="link.link">
+                    class="flex flex-wrap justify-center text-sm font-medium gap-x-6 gap-y-1 "
+                  >
+                    <router-link
+                      v-for="link in links"
+                      :key="link.link"
+                      :to="link.link"
+                    >
                       {{ link.label }}
                     </router-link>
                   </div>
                 </nav>
-                <p class="text-sm text-subtle">© <!-- -->{{ year }}<!-- --> Shaun
-                  Simpson. All rights reserved.</p>
+                <p class="text-sm text-subtle">
+                  © <!-- -->{{ year }}<!-- --> Shaun
+                  Simpson. All rights reserved.
+                </p>
               </div>
             </div>
           </div>

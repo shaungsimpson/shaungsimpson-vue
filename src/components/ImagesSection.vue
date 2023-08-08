@@ -39,16 +39,23 @@ const images = [
 </script>
 
 <template>
-    <!-- Images section -->
-    <div class="mt-16 sm:mt-20">
-        <div class="flex justify-center gap-5 py-4 -my-4 overflow-hidden sm:gap-8">
-            <div v-for="image in images"
-                class="relative aspect-[9/10] ring-2 ring-gray-900 w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl"
-                :class="image.classes">
-                <img :alt="image.alt" class="absolute inset-0 object-cover w-full h-full" style="color:transparent"
-                    :src="image.src">
-            </div>
-        </div>
+  <!-- Images section -->
+  <div class="mt-16 sm:mt-20">
+    <div class="flex justify-center gap-5 py-4 -my-4 overflow-hidden sm:gap-8">
+      <div
+        v-for="image in images"
+        :key="image.src"
+        class="relative aspect-[9/10] ring-2 ring-gray-900 w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl"
+        :class="image.classes"
+      >
+        <img
+          :alt="image.alt"
+          class="absolute inset-0 object-cover w-full h-full"
+          style="color:transparent"
+          :src="image.src"
+        >
+      </div>
     </div>
-    <!-- ./ Images section -->
+  </div>
+  <!-- ./ Images section -->
 </template>
