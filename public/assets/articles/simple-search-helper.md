@@ -1,4 +1,4 @@
-I wanted to share a simple search helper trait that I had to write to clean up some search code recently, in the hopes that it may be useful and also that it may help some newer laravel developers who are trying to understand how to write cleaner code.
+I wanted to share a simple search helper trait that I had to write to clean up some search code recently, in the hopes that it may be useful and also that it may help some newer Laravel developers who are trying to understand how to write cleaner code.
 
 ```php
 <?php
