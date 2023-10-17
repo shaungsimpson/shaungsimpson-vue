@@ -1,9 +1,9 @@
 <script setup>
-import dragJsImg from '/src/assets/img/improve-ux.jpg'
-import applicationImg from '/src/assets/img/application-live.jpg'
-import devHeadphonesImg from '/src/assets/img/test-and-refine.jpg'
-import vueCodeImg from '/src/assets/img/building-the-base.jpg'
-import coffeeImg from '/src/assets/img/coffee.jpg'
+import dragJsImg from '/src/assets/img/improve-ux.jpg?format=webp'
+import applicationImg from '/src/assets/img/application-live.jpg?format=webp'
+import devHeadphonesImg from '/src/assets/img/test-and-refine.jpg?format=webp'
+import vueCodeImg from '/src/assets/img/building-the-base.jpg?format=webp'
+import coffeeImg from '/src/assets/img/coffee.jpg?format=webp'
 const images = [
     {
         src: coffeeImg,

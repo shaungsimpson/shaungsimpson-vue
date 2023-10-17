@@ -4,7 +4,7 @@ import ImagesSection from '@/components/ImagesSection.vue'
 import ImageTextBlock from '@/components/common/ImageTextBlock.vue'
 import SocialLinks from '@/components/SocialLinks.vue'
 import WorkSection from '@/components/WorkSection.vue'
-import heroImg from '/src/assets/img/shaun-pilot.jpeg'
+import heroImg from '/src/assets/img/shaun-pilot.jpeg?format=webp'
 </script>
 
 <template>

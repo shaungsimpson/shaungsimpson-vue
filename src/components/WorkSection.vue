@@ -1,9 +1,9 @@
 <script setup>
-import ooLogo from '/src/assets/img/logos/oo-logo.png'
-import buroservLogo from '/src/assets/img/logos/buroserv-logo.png'
-import netopiaLogo from '/src/assets/img/logos/netopia-logo.png'
-import pounceLogo from '/src/assets/img/logos/pounce-logo.png'
-import slLogo from '/src/assets/img/logos/sl-logo.png'
+import ooLogo from '/src/assets/img/logos/oo-logo.png?format=webp'
+import buroservLogo from '/src/assets/img/logos/buroserv-logo.png?format=webp'
+import netopiaLogo from '/src/assets/img/logos/netopia-logo.png?format=webp'
+import pounceLogo from '/src/assets/img/logos/pounce-logo.png?format=webp'
+import slLogo from '/src/assets/img/logos/sl-logo.png?format=webp'
 import resumePdf from '/src/assets/ShaunSimpson-SoftwareEngineer.pdf'
 import workData from '/src/data/work.json'
 

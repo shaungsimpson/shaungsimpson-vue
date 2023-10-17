@@ -1,7 +1,7 @@
 <script setup>
 import ImageTextBlock from '@/components/common/ImageTextBlock.vue'
 import TextBlock from '@/components/common/TextBlock.vue'
-import heroImg from '/src/assets/img/shaun-pilot.jpeg'
+import heroImg from '/src/assets/img/shaun-pilot.jpeg?format=webp'
 </script>
 
 <template>
