@@ -23,7 +23,7 @@ import GithubLogo from '@/components/svg/social/GithubLogo.vue'
     <a
       class="p-1 -m-1 group"
       aria-label="Find me on LinkedIn"
-      href="https://www.linkedin.com/in/shaun-simpson-66983759/github"
+      href="https://www.linkedin.com/in/shaun-simpson-66983759"
     >
       <LinkedInLogo />
     </a>

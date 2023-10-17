@@ -1,4 +1,5 @@
 <script setup>
+import meLogo from '/src/assets/img/shaun-pilot.jpeg?format=webp&width=50'
 import ooLogo from '/src/assets/img/logos/oo-logo.png?format=webp'
 import buroservLogo from '/src/assets/img/logos/buroserv-logo.png?format=webp'
 import netopiaLogo from '/src/assets/img/logos/netopia-logo.png?format=webp'
@@ -11,6 +12,7 @@ const jobs = workData.jobs
 
 function jobLogo( job ) {
     const logos = {
+        me: meLogo,
         oo: ooLogo,
         buroserv: buroservLogo,
         netopia: netopiaLogo,

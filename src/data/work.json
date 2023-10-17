@@ -1,16 +1,29 @@
 {
     "jobs": [
         {
+            "code": "me",
+            "company": "Freelance Fullstack Developer",
+            "position": "Web & Software Developer",
+            "from": {
+                "date": "2023-09",
+                "text": "Sep 2023"
+            },
+            "to": {
+                "date": "2023",
+                "text": "Present"
+            }
+        },
+        {
             "code": "oo",
             "company": "Online Optimisation",
             "position": "Senior Software Engineer",
             "from": {
                 "date": "2022-09",
-                "text": "Sep 2022"
+                "text": "Sep 2023"
             },
             "to": {
-                "date": "2023",
-                "text": "Present"
+                "date": "2023-09",
+                "text": "Sep 2022"
             }
         },
         {
