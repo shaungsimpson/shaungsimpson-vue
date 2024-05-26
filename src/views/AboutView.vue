@@ -31,7 +31,7 @@ import heroImg from '/src/assets/img/shaun-pilot.jpeg?format=webp'
       </p>
 
       <p class="mt-6 text-base text-default">
-        Lastly, I am an artist at heart and always looking for solutions that solve the needs and are also beuatiful. I try to bring this to my work, whether it is making elegant code, simple API's that are easy to consume or interfaces that simplify complex tasks. Small details sometimes can yield huge results.
+        Lastly, I am an artist at heart and always looking for solutions that solve the needs and are also beautiful. I try to bring this to my work, whether it is making elegant code, simple API's that are easy to consume or interfaces that simplify complex tasks. Small details sometimes can yield huge results.
       </p>
     </TextBlock>
   </div>

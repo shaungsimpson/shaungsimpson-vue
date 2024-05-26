@@ -3,6 +3,7 @@ import meLogo from '/src/assets/img/shaun-pilot.jpeg?format=webp&width=50'
 import ooLogo from '/src/assets/img/logos/oo-logo.png?format=webp'
 import buroservLogo from '/src/assets/img/logos/buroserv-logo.png?format=webp'
 import netopiaLogo from '/src/assets/img/logos/netopia-logo.png?format=webp'
+import otivoLogo from '/src/assets/img/logos/otivo-logo.png?format=webp'
 import pounceLogo from '/src/assets/img/logos/pounce-logo.png?format=webp'
 import slLogo from '/src/assets/img/logos/sl-logo.png?format=webp'
 import resumePdf from '/src/assets/ShaunSimpson-SoftwareEngineer.pdf'
@@ -18,6 +19,7 @@ function jobLogo( job ) {
         netopia: netopiaLogo,
         pounce: pounceLogo,
         sl: slLogo,
+        otivo: otivoLogo,
     }
 
     return logos[job.code]
