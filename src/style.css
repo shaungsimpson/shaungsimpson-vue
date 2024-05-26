@@ -11,6 +11,9 @@
 .md-prose-section {
   @apply w-full max-w-screen-sm my-16 text-base prose prose-strong:dark:text-zinc-400 prose-strong:text-zinc-600 lg:max-w-none text-default;
 }
+h2 {
+    @apply dark:text-zinc-400 text-zinc-600;
+}
 .text-strong {
     @apply text-zinc-800 dark:text-zinc-100;
 }
@@ -41,8 +44,13 @@ nav .router-link-exact-active {
 }
 
 /* ------------ prose classes ------------------  */
-.prose p {
+.prose p,
+.prose h2,
+.prose ul {
   @apply max-w-prose;
+}
+.prose h2 {
+  @apply mt-16 mb-8 text-2xl font-semibold;
 }
 
 /* ------------- animations --------------------  */

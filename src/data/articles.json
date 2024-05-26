@@ -15,6 +15,14 @@
             "blurb": "A simple example to demonstrate how to build a trait that you can reuse in your Laravel controllers to handle nested relation search automagically. I'll also explain why you would use this and not write the logic onto a model trait instead",
             "slug": "simple-search-helper",
             "mdFile": "simple-search-helper.md"
+        },
+        {
+            "link": "/articles/tools-i-use",
+            "published": "2024-05-26",
+            "title": "Tools I Use",
+            "blurb": "A quick overview of tools I use to enhance my productivity",
+            "slug": "tools-i-use",
+            "mdFile": "tools-i-use.md"
         }
     ]
 }
