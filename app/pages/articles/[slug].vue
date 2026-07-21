@@ -27,6 +27,25 @@ useSeoMeta({
   articleTag: () => article.value?.tags,
 })
 
+const publishedLabel = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(article.value.published))
+
+defineOgImage('Article', {
+  title: article.value.title,
+  description: seoDescription.value,
+  published: publishedLabel,
+  tags: (article.value.tags ?? []).join(' · '),
+}, {
+  width: 1200,
+  height: 630,
+  extension: 'png',
+  alt: `${article.value.title} — Shaun Simpson`,
+})
+
 useSchemaOrg([
   defineArticle({
     headline: article.value.title,
