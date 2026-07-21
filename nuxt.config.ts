@@ -9,6 +9,16 @@ export default defineNuxtConfig({
     '@nuxt/devtools',
   ],
 
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          langs: ['js', 'jsx', 'json', 'ts', 'tsx', 'vue', 'css', 'html', 'bash', 'md', 'mdc', 'yaml', 'php'],
+        },
+      },
+    },
+  },
+
   css: ['~/assets/css/main.css'],
 
   vite: {
