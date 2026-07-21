@@ -1,0 +1,25 @@
+export type WorkCode = 'me' | 'oo' | 'buroserv' | 'netopia' | 'pounce' | 'sl' | 'otivo'
+
+interface WorkPeriod {
+  date: string
+  text: string
+}
+
+export interface WorkEntry {
+  code: WorkCode
+  company: string
+  position: string
+  from: WorkPeriod
+  to: WorkPeriod
+}
+
+export const workHistory = [
+  { code: 'otivo', company: 'Otivo', position: 'Senior Software Engineer', from: { date: '2023-12', text: 'Dec 2023' }, to: { date: '2024', text: 'Present' } },
+  { code: 'me', company: 'Freelance Fullstack Developer', position: 'Web & Software Developer', from: { date: '2023-09', text: 'Sep 2023' }, to: { date: '2023-12', text: 'Dec 2023' } },
+  { code: 'oo', company: 'Online Optimisation', position: 'Senior Software Engineer', from: { date: '2022-09', text: 'Sep 2022' }, to: { date: '2023-09', text: 'Sep 2023' } },
+  { code: 'buroserv', company: 'Buroserv', position: 'Senior Software Engineer', from: { date: '2021-11', text: 'Nov 2021' }, to: { date: '2022-09', text: 'Sep 2022' } },
+  { code: 'pounce', company: 'Pounce Marketing', position: 'Senior Full Stack Developer', from: { date: '2020-03', text: 'Mar 2020' }, to: { date: '2021-11', text: 'Nov 2021' } },
+  { code: 'oo', company: 'Online Optimisation', position: 'Web Developer', from: { date: '2019-03', text: 'Mar 2019' }, to: { date: '2019-12', text: 'Dec 2019' } },
+  { code: 'sl', company: 'Studyladder', position: 'Web Developer', from: { date: '2015-01', text: 'Jan 2015' }, to: { date: '2019-03', text: 'Mar 2019' } },
+  { code: 'netopia', company: 'Netopia (prev. Digital Tradies)', position: 'Web Developer', from: { date: '2014-07', text: 'Jul 2015' }, to: { date: '2015-01', text: 'Jan 2015' } },
+] satisfies WorkEntry[]

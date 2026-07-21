@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply min-h-full bg-zinc-50 dark:bg-black;
+  }
+
+  body {
+    @apply min-h-screen bg-zinc-50 dark:bg-black;
+  }
+
+  #__nuxt {
+    @apply min-h-screen;
+  }
+}
+
+.text-strong { @apply text-zinc-800 dark:text-zinc-100; }
+.text-default { @apply text-zinc-600 dark:text-zinc-400; }
+.text-subtle { @apply text-zinc-400 dark:text-zinc-500; }
+
+.shadow-edge {
+  @apply bg-white/90 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10;
+}
+
+.prose a,
+.text-link {
+  @apply text-emerald-500 transition hover:text-emerald-300 hover:underline dark:text-emerald-500 dark:hover:text-emerald-300;
+}
+
+nav a,
+.theme-toggle {
+  @apply text-zinc-800 transition hover:text-emerald-500 dark:text-zinc-200 dark:hover:text-emerald-400;
+}
+
+nav a.router-link-active,
+nav a.router-link-exact-active {
+  @apply pointer-events-none text-emerald-500 dark:text-emerald-500;
+}
+
+.md-prose-section {
+  @apply my-16 w-full max-w-screen-sm text-base text-zinc-600 dark:text-zinc-400 lg:max-w-none;
+}
+
+.prose p,
+.prose h2,
+.prose ul {
+  @apply max-w-prose;
+}
+
+.prose h2 {
+  @apply mb-8 mt-16 text-2xl font-semibold;
+}

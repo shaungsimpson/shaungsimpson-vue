@@ -1,4 +1,15 @@
-I wanted to share a simple search helper trait that I had to write to clean up some search code recently, in the hopes that it may be useful and also that it may help some newer Laravel developers who are trying to understand how to write cleaner code.
+---
+title: A Simple Laravel Search Helper
+description: A simple example to demonstrate how to build a trait that you can reuse in your Laravel controllers to handle nested relation search automagically. I'll also explain why you would use this and not write the logic onto a model trait instead
+seoDescription: Build a reusable Laravel trait for nested relation searches in controllers, with cleaner query logic and guidance on keeping it out of model traits.
+published: 2023-08-06
+draft: false
+tags:
+  - laravel
+  - php
+---
+
+I wanted to share a simple search helper trait that I had to write to clean up some search code recently, in the hopes that it may be useful and also that it may help some newer laravel developers who are trying to understand how to write cleaner code.
 
 ```php
 <?php
