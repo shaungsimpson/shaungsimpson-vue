@@ -11,7 +11,7 @@ const { data: latestArticles } = await useAsyncData('home-articles', () =>
   queryCollection('articles')
     .where('draft', '=', false)
     .order('published', 'DESC')
-    .select('path', 'title', 'description', 'published')
+    .select('path', 'title', 'description', 'published', 'updated')
     .all().then((articles) =>
       articles
         .filter((article) => article.published <= publicationDate)

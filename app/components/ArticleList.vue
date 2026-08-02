@@ -3,12 +3,19 @@ import type { Collections } from '@nuxt/content'
 
 type ArticleSummary = Pick<
   Collections['articles'],
-  'path' | 'title' | 'description' | 'published'
+  'path' | 'title' | 'description' | 'published' | 'updated'
 >
 
 defineProps<{
   articles: ArticleSummary[]
 }>()
+
+function dateLabel(article: ArticleSummary): string {
+  const date = article.updated ?? article.published
+  const label = dateFormatter.format(new Date(date))
+
+  return article.updated ? `Updated ${label}` : label
+}
 
 const dateFormatter = new Intl.DateTimeFormat('en-AU', {
   month: 'long',
@@ -28,9 +35,9 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', {
           <span class="relative z-10">{{ article.title }}</span>
         </NuxtLink>
       </h2>
-      <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-subtle" :datetime="article.published">
+      <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-subtle" :datetime="article.updated ?? article.published">
         <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true"><span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" /></span>
-        {{ dateFormatter.format(new Date(article.published)) }}
+        {{ dateLabel(article) }}
       </time>
       <p class="relative z-10 mt-2 text-sm text-default">{{ article.description }}</p>
       <div aria-hidden="true" class="relative z-10 mt-4 flex items-center text-sm font-medium text-emerald-500">
