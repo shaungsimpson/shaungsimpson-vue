@@ -34,7 +34,17 @@ const imgClasses = props.height + ' ' + props.width
       </div>
       <div class="mx-auto max-w-xl lg:max-w-3xl">
         <div class="mx-auto my-12 max-w-2xl lg:my-4 lg:px-12">
-          <img v-if="img" :src="img" alt="Shaun Simpson" width="512" height="512" fetchpriority="high" class="mx-auto rounded-full bg-zinc-100 object-cover dark:bg-zinc-800" :class="imgClasses">
+          <NuxtPicture
+            v-if="img"
+            :src="img"
+            alt="Shaun Simpson"
+            width="500"
+            height="500"
+            sizes="208px"
+            format="avif,webp,jpeg"
+            preload
+            :img-attrs="{ class: ['mx-auto rounded-full bg-zinc-100 object-cover dark:bg-zinc-800', imgClasses], fetchpriority: 'high' }"
+          />
         </div>
       </div>
     </div>
