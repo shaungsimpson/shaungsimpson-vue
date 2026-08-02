@@ -60,12 +60,16 @@ useSeoMeta({
   articleTag: () => article.value?.tags,
 })
 
-const publishedLabel = new Intl.DateTimeFormat('en-AU', {
+const articleDateFormatter = new Intl.DateTimeFormat('en-AU', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
   timeZone: 'UTC',
-}).format(new Date(article.value.published))
+})
+const publishedLabel = articleDateFormatter.format(new Date(article.value.published))
+const updatedLabel = article.value.updated
+  ? articleDateFormatter.format(new Date(article.value.updated))
+  : undefined
 
 defineOgImage('Article', {
   title: article.value.title,
@@ -101,6 +105,10 @@ useSchemaOrg([
               <h1 class="max-w-2xl text-4xl font-bold tracking-tight text-strong sm:text-5xl">
                 {{ article.title }}
               </h1>
+              <div class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-subtle">
+                <time :datetime="article.published">Published {{ publishedLabel }}</time>
+                <time v-if="updatedLabel" :datetime="article.updated">Updated {{ updatedLabel }}</time>
+              </div>
               <ContentRenderer :value="article" class="md-prose-section prose prose-zinc dark:prose-invert" />
               <SeriesNavigation :previous="previousSeriesArticle" :next="nextSeriesArticle" />
               <SocialLinks />
