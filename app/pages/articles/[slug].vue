@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { currentPublicationDate } from '~/utils/currentPublicationDate'
+
 const route = useRoute()
 const siteUrl = 'https://shaungsimpson.com'
 const socialImage = siteUrl + '/assets/img/shaun-pilot.jpeg'
 const articlePath = `/articles/${route.params.slug}`
+const publicationDate = import.meta.dev ? '9999-12-31' : currentPublicationDate()
 
 const { data: article } = await useAsyncData(articlePath, () =>
   queryCollection('articles')
@@ -11,9 +14,39 @@ const { data: article } = await useAsyncData(articlePath, () =>
     .first(),
 )
 
-if (!article.value) {
+if (!article.value || article.value.published > publicationDate) {
   throw createError({ statusCode: 404, statusMessage: 'Article not found' })
 }
+
+const { data: seriesArticles } = await useAsyncData(
+  `article-series:${article.value.series ?? 'none'}`,
+  () => queryCollection('articles')
+    .where('draft', '=', false)
+    .select('path', 'title', 'published', 'series', 'seriesOrder')
+    .all(),
+)
+
+const publishedSeriesArticles = computed(() =>
+  (seriesArticles.value ?? [])
+    .filter((seriesArticle) =>
+      seriesArticle.series === article.value?.series
+      && seriesArticle.published <= publicationDate,
+    )
+    .sort((left, right) => (left.seriesOrder ?? 0) - (right.seriesOrder ?? 0)),
+)
+const currentSeriesIndex = computed(() =>
+  publishedSeriesArticles.value.findIndex((seriesArticle) => seriesArticle.path === article.value?.path),
+)
+const previousSeriesArticle = computed(() =>
+  currentSeriesIndex.value > 0
+    ? publishedSeriesArticles.value[currentSeriesIndex.value - 1]
+    : undefined,
+)
+const nextSeriesArticle = computed(() =>
+  currentSeriesIndex.value >= 0
+    ? publishedSeriesArticles.value[currentSeriesIndex.value + 1]
+    : undefined,
+)
 
 const seoDescription = computed(() => article.value?.seoDescription ?? article.value?.description)
 
@@ -38,12 +71,12 @@ defineOgImage('Article', {
   title: article.value.title,
   description: seoDescription.value,
   published: publishedLabel,
-  tags: (article.value.tags ?? []).join(' · '),
+  tags: (article.value.tags ?? []).join(' / '),
 }, {
   width: 1200,
   height: 630,
   extension: 'png',
-  alt: `${article.value.title} — Shaun Simpson`,
+  alt: `${article.value.title} - Shaun Simpson`,
 })
 
 useSchemaOrg([
@@ -69,6 +102,7 @@ useSchemaOrg([
                 {{ article.title }}
               </h1>
               <ContentRenderer :value="article" class="md-prose-section prose prose-zinc dark:prose-invert" />
+              <SeriesNavigation :previous="previousSeriesArticle" :next="nextSeriesArticle" />
               <SocialLinks />
             </div>
           </div>

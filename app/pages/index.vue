@@ -1,15 +1,22 @@
 <script setup lang="ts">
+import { currentPublicationDate } from '~/utils/currentPublicationDate'
 useSeoMeta({
   title: 'Software Engineer in Sydney',
   description: 'Portfolio of Shaun Simpson, a software engineer and developer based in Sydney, Australia.',
 })
 
+const publicationDate = import.meta.dev ? '9999-12-31' : currentPublicationDate()
+
 const { data: latestArticles } = await useAsyncData('home-articles', () =>
   queryCollection('articles')
     .where('draft', '=', false)
-    .order('published', 'ASC')
+    .order('published', 'DESC')
     .select('path', 'title', 'description', 'published')
-    .all(),
+    .all().then((articles) =>
+      articles
+        .filter((article) => article.published <= publicationDate)
+        .slice(0, 10),
+    ),
 )
 </script>
 

@@ -13,6 +13,8 @@ export default defineContentConfig({
         published: z.string().date(),
         updated: z.string().date().optional(),
         draft: z.boolean().default(false),
+        series: z.string().min(1).optional(),
+        seriesOrder: z.number().int().positive().optional(),
         tags: z.array(z.string()).default([]),
       }),
       indexes: [
