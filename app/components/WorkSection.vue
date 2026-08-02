@@ -24,7 +24,7 @@ const logos = new Map([
           <div class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
             <NuxtImg :src="logos.get(job.code) ?? ''" alt="" width="80" height="80" sizes="40px" format="webp" loading="lazy" class="h-10 w-10 rounded-full object-cover" />
           </div>
-          <dl class="flex flex-auto flex-wrap gap-x-2"><dd class="w-full text-sm font-medium text-strong">{{ job.company }}</dd><dd class="text-xs text-default">{{ job.position }}</dd><dd class="ml-auto text-xs text-subtle"><time :datetime="job.from.date">{{ job.from.text }}</time> â€” <time :datetime="job.to.date">{{ job.to.text }}</time></dd></dl>
+          <dl class="flex flex-auto flex-wrap gap-x-2"><dd class="w-full text-sm font-medium text-strong">{{ job.company }}</dd><dd class="text-xs text-default">{{ job.position }}</dd><dd class="ml-auto text-xs text-subtle"><time :datetime="job.from.date">{{ job.from.text }}</time> - <time :datetime="job.to.date">{{ job.to.text }}</time></dd></dl>
         </li>
       </ol>
       <a href="/assets/shaun-simpson-software-engineer.pdf" class="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800">

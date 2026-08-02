@@ -3,7 +3,7 @@ const year = new Date().getFullYear()
 const links = [
   { link: '/', label: 'Home' },
   { link: '/about', label: 'About' },
-  { link: '/articles', label: 'Articles' },
+  { link: '/articles/', label: 'Articles' },
 ]
 </script>
 
@@ -22,7 +22,7 @@ const links = [
                     </NuxtLink>
                   </div>
                 </nav>
-                <p class="text-sm text-subtle">© {{ year }} Shaun Simpson. All rights reserved.</p>
+                <p class="text-sm text-subtle">&copy; {{ year }} Shaun Simpson. All rights reserved.</p>
               </div>
             </div>
           </div>

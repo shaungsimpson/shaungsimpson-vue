@@ -21,7 +21,7 @@ function toggleDark() {
 const links = [
   { link: '/', label: 'Home' },
   { link: '/about', label: 'About' },
-  { link: '/articles', label: 'Articles' },
+  { link: '/articles/', label: 'Articles' },
 ]
 </script>
 

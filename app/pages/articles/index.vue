@@ -37,7 +37,7 @@ const paginatedArticles = computed(() => {
 })
 
 function pageLink(page: number) {
-  return page === 1 ? '/articles' : { path: '/articles', query: { page } }
+  return page === 1 ? '/articles/' : { path: '/articles/', query: { page } }
 }
 </script>
 
