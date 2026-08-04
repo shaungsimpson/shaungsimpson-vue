@@ -3,6 +3,7 @@ title: "Embrace the Framework: Why Working With Laravel Beats Working Around It"
 description: Laravel gives us more than convenient helpers. This is an introduction to why leaning into its conventions and tools leads to clearer, more maintainable applications.
 seoDescription: Learn why embracing Laravel's conventions, collections, pipelines, and built-in tools creates clearer, more maintainable applications.
 published: '2026-07-23'
+updated: '2026-08-05'
 draft: false
 series: embrace-the-framework
 seriesOrder: 1
@@ -126,10 +127,11 @@ $ordersReadyToShip = $orders
         $order->is_paid
         && $order->shipping_address !== null
         && $order->items->every(fn ($item) => $item->is_in_stock)
+        && $order->total_in_cents < 100000
     );
 ```
 
-The important improvement is not simply that this has fewer lines. It tells a clearer story: take the orders and filter them to the ones that are ready to ship.
+The important improvement is not simply that this has fewer lines. It tells a clearer story: take the orders and filter them to the ones that are ready to ship. In this scenario, orders worth $1,000 or more are held for manual review, so the introductory rule matches the fuller definition used in the next article.
 
 The collection remains a Collection too, so further work stays expressive:
 

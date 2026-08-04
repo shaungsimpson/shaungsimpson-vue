@@ -3,6 +3,7 @@ title: "Embrace the Framework: Make Eligibility Rules Read Like Business Policy"
 description: Use a custom Laravel Collection to turn scattered loyalty and promotion rules into clear, reusable business language.
 seoDescription: Learn how a custom Laravel Collection makes customer eligibility rules clear, reusable, and easy to test.
 published: '2026-08-04'
+updated: '2026-08-05'
 draft: false
 series: embrace-the-framework
 seriesOrder: 6
@@ -75,6 +76,8 @@ Here is one possible implementation:
 namespace App\Collections;
 
 use App\Models\Customer;
+use App\Models\Invoice;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Collection;
 
 class CustomerCollection extends Collection
@@ -98,28 +101,69 @@ class CustomerCollection extends Collection
     {
         return $this->where('country_code', 'AU');
     }
+
+    public function withAnnualCompletedSpendOfAtLeast(int $amountInCents): self
+    {
+        return $this->filter(function (Customer $customer) use ($amountInCents) {
+            $annualCompletedSpend = $customer->orders
+                ->filter(fn (Order $order) =>
+                    $order->status === 'completed'
+                    && $order->refunded_at === null
+                    && $order->completed_at?->greaterThanOrEqualTo(now()->subYear()) === true
+                )
+                ->sum('total_in_cents');
+
+            return $annualCompletedSpend >= $amountInCents;
+        });
+    }
+
+    public function withoutOverdueInvoices(): self
+    {
+        return $this->filter(fn (Customer $customer) =>
+            $customer->invoices->every(
+                fn (Invoice $invoice) => $invoice->status !== 'overdue'
+            )
+        );
+    }
+
+    public function withoutReward(string $code): self
+    {
+        return $this->reject(fn (Customer $customer) =>
+            $customer->rewards->contains('code', $code)
+        );
+    }
 }
 ```
 
-The first method reads much more like a policy than a set of implementation details. The smaller methods can be private if they are only used to support this rule, or public if they are meaningful concepts elsewhere in the application.
+The first method reads much more like a policy than a set of implementation details. The smaller methods use familiar Collection operations to implement every part of that policy:
 
-The remaining conditions can still use familiar Collection operations:
+- `withAnnualCompletedSpendOfAtLeast` keeps completed, non-refunded orders from the last year and compares their combined value with the threshold;
+- `withoutOverdueInvoices` uses `every` to require that each invoice is not overdue; and
+- `withoutReward` uses `reject` to remove customers who already have the reward code.
+
+These supporting methods can be private if they only belong to this policy, or public if they are meaningful concepts elsewhere in the application.
+
+## Connect the Collection in Laravel 13
+
+The class alone does not change what `Customer::query()->get()` returns. In Laravel 13, connect it to the model with the `CollectedBy` attribute:
 
 ```php
-public function withoutOverdueInvoices(): self
-{
-    return $this->filter(fn (Customer $customer) =>
-        $customer->invoices->every(fn (Invoice $invoice) => $invoice->status !== 'overdue')
-    );
-}
+<?php
 
-public function withoutReward(string $code): self
+namespace App\Models;
+
+use App\Collections\CustomerCollection;
+use Illuminate\Database\Eloquent\Attributes\CollectedBy;
+use Illuminate\Database\Eloquent\Model;
+
+#[CollectedBy(CustomerCollection::class)]
+class Customer extends Model
 {
-    return $this->reject(fn (Customer $customer) =>
-        $customer->rewards->contains('code', $code)
-    );
+    // ...
 }
 ```
+
+Without that connection, Eloquent returns its standard Collection and `eligibleForLoyaltyReward()` is not available. Laravel 13 still permits a `newCollection()` override, but `#[CollectedBy]` is more direct and allows the framework to preserve features such as automatic relationship loading without a custom constructor implementation.
 
 ## Load the data deliberately
 

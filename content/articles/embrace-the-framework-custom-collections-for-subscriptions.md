@@ -3,6 +3,7 @@ title: "Embrace the Framework: Put Subscription Business Rules in a Custom Colle
 description: Custom Eloquent Collections give repeated business rules a clear home and let application code speak the language of the domain.
 seoDescription: Learn how custom Laravel Collections keep subscription business rules readable, reusable, and out of controllers.
 published: '2026-07-28'
+updated: '2026-08-05'
 draft: false
 series: embrace-the-framework
 seriesOrder: 3
@@ -63,7 +64,11 @@ class SubscriptionCollection extends Collection
 }
 ```
 
-Then tell the model to use it:
+## Connect the Collection in Laravel 13
+
+Defining the Collection is only half of the setup. Eloquent must also know that a group of `Subscription` models should be returned as a `SubscriptionCollection`.
+
+Laravel 13 gives us a direct model-level extension point for this: the `CollectedBy` attribute.
 
 ```php
 <?php
@@ -71,18 +76,21 @@ Then tell the model to use it:
 namespace App\Models;
 
 use App\Collections\SubscriptionCollection;
+use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Model;
 
+#[CollectedBy(SubscriptionCollection::class)]
 class Subscription extends Model
 {
-    public function newCollection(array $models = []): SubscriptionCollection
-    {
-        return new SubscriptionCollection($models);
-    }
+    // ...
 }
 ```
 
-Now any Eloquent result containing subscriptions can use the new language:
+The attribute is important: without it, `get()` returns Laravel's standard Eloquent Collection, which does not have `requiringPaymentFollowUp()`.
+
+Older examples often override `newCollection()` and return the custom Collection directly. Laravel 13 still supports that approach, but its current implementation also preserves automatic relationship loading when that feature is enabled. Using `#[CollectedBy]` keeps this example focused and lets Eloquent take care of constructing the Collection correctly.
+
+Now any operation for `Subscription` models that would normally return an Eloquent Collection can use the new language:
 
 ```php
 $subscriptionsToContact = Subscription::query()

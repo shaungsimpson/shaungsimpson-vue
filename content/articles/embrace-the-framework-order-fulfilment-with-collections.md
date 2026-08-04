@@ -194,7 +194,11 @@ The `readyToShip` method calls `filter` on the current group of orders. `filter`
 
 The `self` return type makes the result explicit: callers receive another `OrderCollection`, not an array or an unrelated value. That means the result can continue through another Collection operation.
 
-Defining the class is only the first half of the setup. Eloquent still needs to know that a group of `Order` models should be returned as an `OrderCollection`. We connect the Collection to the model by overriding `newCollection`:
+## Connect the Collection in Laravel 13
+
+Defining the class is only the first half of the setup. Eloquent still needs to know that a group of `Order` models should be returned as an `OrderCollection`.
+
+In Laravel 13, the clearest way to make that connection is the model's `CollectedBy` attribute:
 
 ```php
 <?php
@@ -202,18 +206,19 @@ Defining the class is only the first half of the setup. Eloquent still needs to 
 namespace App\Models;
 
 use App\Collections\OrderCollection;
+use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Model;
 
+#[CollectedBy(OrderCollection::class)]
 class Order extends Model
 {
-    public function newCollection(array $models = []): OrderCollection
-    {
-        return new OrderCollection($models);
-    }
+    // ...
 }
 ```
 
-Eloquent calls `newCollection` when it needs to create a Collection for this model. It passes the retrieved models into the method, and the method wraps them in our `OrderCollection`. From that point on, an Eloquent operation that would normally return a Collection of orders can expose `readyToShip` as well as the standard Collection methods.
+The attribute tells Eloquent which Collection class belongs to the model. From that point on, an Eloquent operation that would normally return a Collection of orders can expose `readyToShip` as well as the standard Collection methods.
+
+Laravel 13 still supports overriding `newCollection()`, but the current framework implementation also preserves automatic relationship loading when that feature is enabled. The attribute avoids having to reproduce that framework behaviour ourselves and makes the relationship between the model and Collection visible above the model class.
 
 The application code can now use the business rule directly:
 

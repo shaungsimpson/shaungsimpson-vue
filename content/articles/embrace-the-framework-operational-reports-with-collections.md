@@ -3,6 +3,7 @@ title: "Embrace the Framework: Build Clear Operational Reports With Collections"
 description: Use Laravel Collections to turn subscription and invoice data into a useful daily report without filling a controller with loops and temporary arrays.
 seoDescription: Learn how Laravel Collections create clear operational reports from subscription and invoice data using grouping, filtering, and aggregation.
 published: '2026-08-02'
+updated: '2026-08-05'
 draft: false
 series: embrace-the-framework
 seriesOrder: 5
