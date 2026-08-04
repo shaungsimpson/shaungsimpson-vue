@@ -3,6 +3,7 @@ title: "Embrace the Framework: Make Order Fulfilment Clearer With Collections"
 description: A practical look at using Laravel Collections to turn a confusing order fulfilment task into readable, testable code.
 seoDescription: Learn how Laravel Collections simplify order fulfilment by filtering, grouping, and summarising real application data.
 published: '2026-07-25'
+updated: '2026-08-05'
 draft: false
 series: embrace-the-framework
 seriesOrder: 2
@@ -158,9 +159,82 @@ When a callback starts carrying a lot of domain knowledge, give that knowledge a
 For example, this is a useful point to stop repeating the same shipping rules:
 
 ```php
-$ordersReadyToShip = $orders->readyToShip();
+<?php
+
+namespace App\Collections;
+
+use App\Models\Order;
+use App\Models\OrderItem;
+use Illuminate\Database\Eloquent\Collection;
+
+class OrderCollection extends Collection
+{
+    public function readyToShip(): self
+    {
+        return $this->filter(fn (Order $order) =>
+            $order->is_paid
+            && $order->shipping_address !== null
+            && $order->items->every(
+                fn (OrderItem $item) => $item->is_in_stock
+            )
+            && $order->total_in_cents < 100000
+        );
+    }
+}
 ```
 
-That is where custom Collections become particularly useful. Instead of merely transforming a list, we can teach a collection of orders what it means to be ready to ship.
+`OrderCollection` extends Eloquent's Collection, so it keeps all the familiar Collection operations while adding language that belongs specifically to orders.
 
-That is the next step in this series.
+The `readyToShip` method calls `filter` on the current group of orders. `filter` leaves the original Collection alone and returns a new Collection containing only the orders for which every condition is true:
+
+- the order has been paid;
+- a shipping address is present;
+- `every` confirms that all of its items are in stock; and
+- the total is below $1,000, because higher-value orders require manual review.
+
+The `self` return type makes the result explicit: callers receive another `OrderCollection`, not an array or an unrelated value. That means the result can continue through another Collection operation.
+
+Defining the class is only the first half of the setup. Eloquent still needs to know that a group of `Order` models should be returned as an `OrderCollection`. We connect the Collection to the model by overriding `newCollection`:
+
+```php
+<?php
+
+namespace App\Models;
+
+use App\Collections\OrderCollection;
+use Illuminate\Database\Eloquent\Model;
+
+class Order extends Model
+{
+    public function newCollection(array $models = []): OrderCollection
+    {
+        return new OrderCollection($models);
+    }
+}
+```
+
+Eloquent calls `newCollection` when it needs to create a Collection for this model. It passes the retrieved models into the method, and the method wraps them in our `OrderCollection`. From that point on, an Eloquent operation that would normally return a Collection of orders can expose `readyToShip` as well as the standard Collection methods.
+
+The application code can now use the business rule directly:
+
+```php
+$ordersByWarehouse = Order::query()
+    ->with('items')
+    ->get()
+    ->readyToShip()
+    ->groupBy('warehouse_id');
+```
+
+There are two stages in this chain. `with('items')` tells Eloquent to load the order items alongside the orders, and `get()` executes the database query. That eager loading matters because `readyToShip` inspects every order's items; without it, accessing `items` could issue an additional query for each order.
+
+After `get()`, we are working with an `OrderCollection` in memory. `readyToShip()` applies the named rule, and `groupBy('warehouse_id')` organises the matching orders for the warehouse. The code reads as a sequence of business decisions without repeating the conditions at the point of use.
+
+The improvement is not simply that the calling code is shorter. Controllers, scheduled jobs, and reports can now use the same definition of "ready to ship" without copying its conditions. When the fulfilment policy changes, there is one method to update and one focused behaviour to test.
+
+Because `readyToShip` returns an `OrderCollection`, the result also remains chainable with the Collection operations we have already used, including `groupBy`, `sum`, and `each`.
+
+There is also an important boundary here: `readyToShip()` filters orders after they have been loaded. That is a good fit for a daily fulfilment batch that already needs the orders and their items. If the application has millions of candidate orders and only needs a small subset, the database should narrow the result first with query conditions or a local query scope. A custom Collection is most useful once we have a meaningful group of models and want to apply reusable rules or transformations to that group.
+
+That is where custom Collections become particularly useful. Instead of merely transforming a list, we can teach a collection of orders what its business terms mean.
+
+The next article takes this pattern further by putting a larger set of subscription rules into their own custom Collection.
