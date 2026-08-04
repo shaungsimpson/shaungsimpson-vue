@@ -3,6 +3,7 @@ title: "Embrace the Framework: Break Order Processing Into Steps With Pipelines"
 description: Laravel Pipelines let complex workflows grow one focused, testable step at a time instead of one large service method.
 seoDescription: Learn how Laravel Pipelines make order processing easier to test, extend, and understand with focused processing steps.
 published: '2026-07-31'
+updated: '2026-08-05'
 draft: false
 series: embrace-the-framework
 seriesOrder: 4
@@ -49,24 +50,34 @@ Our order service can focus on the workflow itself:
 
 ```php
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Facades\DB;
 
-public function process(Order $order): Order
+class ProcessOrder
 {
-    return app(Pipeline::class)
-        ->send($order)
-        ->through([
-            ValidateDeliveryAddress::class,
-            ReserveStock::class,
-            ApplyContractPricing::class,
-            CalculateShipping::class,
-            RunFraudChecks::class,
-            PersistOrder::class,
-        ])
-        ->thenReturn();
+    private const PIPES = [
+        ValidateDeliveryAddress::class,
+        ReserveStock::class,
+        ApplyContractPricing::class,
+        CalculateShipping::class,
+        RunFraudChecks::class,
+        PersistOrder::class,
+    ];
+
+    public function process(Order $order): Order
+    {
+        return DB::transaction(function () use ($order) {
+            $order->loadMissing('items');
+
+            return app(Pipeline::class)
+                ->send($order)
+                ->through(self::PIPES)
+                ->thenReturn();
+        });
+    }
 }
 ```
 
-The sequence is visible immediately. It is also easy to change: inserting a new stage is a deliberate change to the workflow rather than another concern hidden inside a large method.
+The sequence is visible immediately. It is also easy to change: inserting a new stage is a deliberate change to the workflow rather than another concern hidden inside a large method. Keeping the pipe list in one named constant also means the transactional and non-transactional explanations never depend on an unexplained `$this->pipes` property.
 
 ## A pipe should be small and honest
 
@@ -79,21 +90,25 @@ namespace App\Pipelines\OrderProcessing;
 
 use App\Exceptions\InsufficientStock;
 use App\Models\Order;
+use App\Models\Product;
 use Closure;
 
 class ReserveStock
 {
     public function handle(Order $order, Closure $next): mixed
     {
-        foreach ($order->items as $item) {
-            if (! $item->product->hasAvailableStock($item->quantity)) {
-                throw new InsufficientStock($item->product);
-            }
-        }
+        foreach ($order->items->sortBy('product_id') as $item) {
+            $product = Product::query()
+                ->lockForUpdate()
+                ->findOrFail($item->product_id);
 
-        $order->items->each(fn ($item) =>
-            $item->product->reserveStock($item->quantity)
-        );
+            if (! $product->hasAvailableStock($item->quantity)) {
+                throw new InsufficientStock($product);
+            }
+
+            $product->reserveStock($item->quantity);
+            $item->setRelation('product', $product);
+        }
 
         return $next($order);
     }
@@ -102,13 +117,20 @@ class ReserveStock
 
 This class does not need to know whether shipping has been calculated, whether the order will be persisted, or what happens after it calls `$next`. It has one responsibility: ensure stock is available and reserve it.
 
+The row lock is an important part of that responsibility. A database transaction by itself does not stop two workers from reading the same available quantity before either worker updates it. `lockForUpdate()` holds each selected product row until the surrounding transaction completes, so the availability check and reservation operate on the same locked state. Sorting by `product_id` also gives concurrent orders a consistent lock order.
+
+The service loads `items` before the Pipeline starts, and this pipe deliberately reloads each product under a lock. It then places that locked model on the item relation so later pricing pipes can reuse it without issuing a hidden lazy-loading query.
+
 That narrow focus makes the class easier to test too.
 
 ```php
 it('stops processing when an item is out of stock', function () {
-    $order = Order::factory()->withOutOfStockItem()->make();
+    $order = Order::factory()->withOutOfStockItem()->create();
+    $order->load('items');
 
-    expect(fn () => app(ReserveStock::class)->handle($order, fn () => null))
+    expect(fn () => DB::transaction(
+        fn () => app(ReserveStock::class)->handle($order, fn () => null)
+    ))
         ->toThrow(InsufficientStock::class);
 });
 ```
@@ -125,21 +147,9 @@ Keeping the order in one place makes those decisions visible during code review.
 
 A Pipeline has some overhead. For two small operations, a simple method may be easier to read. It becomes valuable when the process has several independent stages, stages need their own tests, or the sequence is likely to grow.
 
-Pipelines are also not a replacement for transactions. If the workflow changes data in several places, the surrounding service still needs to decide where the database transaction begins and ends.
+Pipelines are also not a replacement for transactions. If the workflow changes data in several places, the surrounding service still needs to decide where the database transaction begins and ends. That is why `ProcessOrder` wraps the complete Pipeline in `DB::transaction()`: an exception from any pipe rolls back the stock, pricing, and order changes together, while the `ReserveStock` pipe supplies the row-level lock needed for its check-then-update rule.
 
-```php
-public function process(Order $order): Order
-{
-    return DB::transaction(fn () =>
-        app(Pipeline::class)
-            ->send($order)
-            ->through($this->pipes)
-            ->thenReturn()
-    );
-}
-```
-
-The Pipeline describes the business process. The service still owns the wider application concerns, such as transactions and deciding which pipes apply.
+The Pipeline describes the business process. The service still owns the wider application concerns, such as the transaction boundary and deciding which pipes apply.
 
 ## Collections and Pipelines solve different problems
 

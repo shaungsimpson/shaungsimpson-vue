@@ -3,6 +3,7 @@ title: "Embrace the Framework: Build an Order Processing Pipeline That Can Grow"
 description: A complete Laravel Pipeline example for validating, pricing, reserving, and persisting an order without creating an oversized service class.
 seoDescription: Build an extensible Laravel order processing Pipeline with focused validation, pricing, stock, and persistence stages.
 published: '2026-08-06'
+updated: '2026-08-05'
 draft: false
 series: embrace-the-framework
 seriesOrder: 7
@@ -47,6 +48,7 @@ use Illuminate\Support\Collection;
 class OrderProcessingContext
 {
     public function __construct(
+        public array $submittedData,
         public Order $order,
         public Collection $exceptions,
     ) {
@@ -59,7 +61,28 @@ class OrderProcessingContext
 }
 ```
 
-The context is not a second model. It is simply the object travelling through the workflow.
+The context is not a second model. It is simply the object travelling through the workflow. `submittedData` gives `NormaliseOrderData` the actual input it is responsible for cleaning, while `order` is the draft Eloquent model that later pipes inspect and change.
+
+The caller constructs that context deliberately and loads the relationships used by the workflow:
+
+```php
+$order = Order::query()
+    ->with([
+        'customer.activeContract',
+        'items.product',
+    ])
+    ->findOrFail($orderId);
+
+$context = new OrderProcessingContext(
+    submittedData: $request->validated(),
+    order: $order,
+    exceptions: collect(),
+);
+
+$processed = app(ProcessOrder::class)->handle($context);
+```
+
+`NormaliseOrderData` can now trim and standardise values in `submittedData`, then fill the permitted fields on the draft order before the validation pipes run. The eager-loading list is equally deliberate: `ApplyContractPricing` needs the customer's active contract, the order items, and each item's product. The stock pipe should still reload and lock the relevant product rows with `lockForUpdate()`, as shown in the earlier Pipeline article, because eager loading is not a concurrency control.
 
 ## Make the pipeline explicit
 
@@ -154,7 +177,39 @@ class FlagExceptions
 }
 ```
 
-Later, `PersistOrder` can save those exceptions, or the caller can decide to route the order into a review queue.
+The final pipe makes the persistence boundary explicit:
+
+```php
+<?php
+
+namespace App\Pipelines\Orders;
+
+use App\Models\OrderItem;
+use App\OrderProcessing\OrderProcessingContext;
+use Closure;
+
+class PersistOrder
+{
+    public function handle(OrderProcessingContext $context, Closure $next): mixed
+    {
+        $context->order->save();
+
+        $context->order->items->each(
+            fn (OrderItem $item) => $item->save()
+        );
+
+        $context->order->exceptions()->createMany(
+            $context->exceptions
+                ->map(fn (string $message) => ['message' => $message])
+                ->all()
+        );
+
+        return $next($context);
+    }
+}
+```
+
+Saving the parent order does not automatically save dirty `OrderItem` models, so the pipe persists them explicitly. The example assumes the order has an `exceptions()` relationship; applications that treat exceptions as transient can instead return them to the caller and route the order into a review queue. Because the whole Pipeline is inside `DB::transaction()`, a failure while saving any part rolls the entire order-processing change back.
 
 ## Adding a new rule stays local
 
@@ -182,6 +237,19 @@ There are two details worth keeping clear.
 First, a Pipeline does not make database changes safe by itself. The transaction in `ProcessOrder` is still important when stock, pricing, and order records must remain consistent.
 
 Second, not every side effect belongs inside the transaction. Sending an email or calling a third-party shipping provider is often better handled after the order has been committed, using an event and queued listener.
+
+In Laravel 13, merely making the listener queued does not guarantee that timing. The listener can implement `ShouldQueueAfterCommit`:
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueueAfterCommit;
+
+class SendOrderConfirmation implements ShouldQueueAfterCommit
+{
+    // Handle the OrderProcessed event...
+}
+```
+
+Alternatively, the queue connection can set `after_commit` to `true`, or an individually dispatched job can use `->afterCommit()`. These mechanisms make Laravel wait for the surrounding database transaction to commit; if it rolls back, the follow-up work is not dispatched.
 
 The Pipeline coordinates the core decision-making process. Laravel's events, jobs, and queues can then handle the follow-up work in their own appropriate places.
 
