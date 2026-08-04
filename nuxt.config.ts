@@ -13,6 +13,10 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         highlight: {
+          theme: {
+            default: 'one-light',
+            dark: 'one-dark-pro',
+          },
           langs: ['js', 'jsx', 'json', 'ts', 'tsx', 'vue', 'css', 'html', 'bash', 'md', 'mdc', 'yaml', 'php'],
         },
       },

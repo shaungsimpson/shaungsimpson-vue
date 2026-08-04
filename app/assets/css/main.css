@@ -53,3 +53,12 @@ nav a.router-link-exact-active {
 .prose h2 {
   @apply mb-8 mt-16 text-2xl font-semibold;
 }
+
+/* Match the code-block surface and fallback text to the active Shiki theme. */
+.prose pre {
+  @apply border border-zinc-200 bg-zinc-100 text-zinc-900 shadow-sm dark:border-white/10 dark:bg-zinc-950 dark:text-zinc-100;
+}
+
+.prose pre code {
+  color: inherit;
+}
