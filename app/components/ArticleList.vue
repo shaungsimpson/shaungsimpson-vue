@@ -17,7 +17,6 @@ function dateLabel(article: ArticleSummary): string {
   return hasUpdatedDate(article) ? `Updated ${label}` : label
 }
 
-
 function hasUpdatedDate(article: ArticleSummary): article is ArticleSummary & { updated: string } {
   return Boolean(article.updated && article.updated > article.published)
 }

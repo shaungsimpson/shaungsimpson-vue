@@ -49,8 +49,10 @@ const nextSeriesArticle = computed(() =>
 )
 
 const seoDescription = computed(() => article.value?.seoDescription ?? article.value?.description)
-const hasUpdatedDate = Boolean(article.value.updated && article.value.updated > article.value.published)
-const effectiveModifiedDate = hasUpdatedDate ? article.value.updated : article.value.published
+const updatedDate = article.value.updated && article.value.updated > article.value.published
+  ? article.value.updated
+  : undefined
+const effectiveModifiedDate = updatedDate ?? article.value.published
 
 useSeoMeta({
   title: () => article.value?.title,
@@ -69,8 +71,8 @@ const articleDateFormatter = new Intl.DateTimeFormat('en-AU', {
   timeZone: 'UTC',
 })
 const publishedLabel = articleDateFormatter.format(new Date(article.value.published))
-const updatedLabel = hasUpdatedDate
-  ? articleDateFormatter.format(new Date(article.value.updated))
+const updatedLabel = updatedDate
+  ? articleDateFormatter.format(new Date(updatedDate))
   : undefined
 
 defineOgImage('Article', {
