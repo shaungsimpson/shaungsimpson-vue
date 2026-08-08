@@ -49,13 +49,15 @@ const nextSeriesArticle = computed(() =>
 )
 
 const seoDescription = computed(() => article.value?.seoDescription ?? article.value?.description)
+const hasUpdatedDate = Boolean(article.value.updated && article.value.updated > article.value.published)
+const effectiveModifiedDate = hasUpdatedDate ? article.value.updated : article.value.published
 
 useSeoMeta({
   title: () => article.value?.title,
   description: seoDescription,
   ogType: 'article',
   articlePublishedTime: () => article.value?.published,
-  articleModifiedTime: () => article.value?.updated ?? article.value?.published,
+  articleModifiedTime: () => effectiveModifiedDate,
   articleAuthor: [siteUrl],
   articleTag: () => article.value?.tags,
 })
@@ -67,7 +69,7 @@ const articleDateFormatter = new Intl.DateTimeFormat('en-AU', {
   timeZone: 'UTC',
 })
 const publishedLabel = articleDateFormatter.format(new Date(article.value.published))
-const updatedLabel = article.value.updated
+const updatedLabel = hasUpdatedDate
   ? articleDateFormatter.format(new Date(article.value.updated))
   : undefined
 
@@ -88,7 +90,7 @@ useSchemaOrg([
     headline: article.value.title,
     description: seoDescription.value,
     datePublished: article.value.published,
-    dateModified: article.value.updated ?? article.value.published,
+    dateModified: effectiveModifiedDate,
     image: socialImage,
     author: { '@id': siteUrl + '/#person' },
   }),

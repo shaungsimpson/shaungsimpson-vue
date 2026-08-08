@@ -11,10 +11,15 @@ defineProps<{
 }>()
 
 function dateLabel(article: ArticleSummary): string {
-  const date = article.updated ?? article.published
+  const date = hasUpdatedDate(article) ? article.updated : article.published
   const label = dateFormatter.format(new Date(date))
 
-  return article.updated ? `Updated ${label}` : label
+  return hasUpdatedDate(article) ? `Updated ${label}` : label
+}
+
+
+function hasUpdatedDate(article: ArticleSummary): article is ArticleSummary & { updated: string } {
+  return Boolean(article.updated && article.updated > article.published)
 }
 
 const dateFormatter = new Intl.DateTimeFormat('en-AU', {
@@ -35,7 +40,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', {
           <span class="relative z-10">{{ article.title }}</span>
         </NuxtLink>
       </h2>
-      <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-subtle" :datetime="article.updated ?? article.published">
+      <time class="relative z-10 order-first mb-3 flex items-center pl-3.5 text-sm text-subtle" :datetime="hasUpdatedDate(article) ? article.updated : article.published">
         <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true"><span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" /></span>
         {{ dateLabel(article) }}
       </time>
