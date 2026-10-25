@@ -19,7 +19,7 @@ const images = [
           height="660"
           sizes="176px sm:288px"
           format="webp"
-          loading="lazy"
+          loading="eager"
           class="absolute inset-0 h-full w-full object-cover"
         />
       </div>
