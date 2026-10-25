@@ -19,7 +19,6 @@ const images = [
           height="660"
           sizes="176px sm:288px"
           format="webp"
-          placeholder
           loading="lazy"
           class="absolute inset-0 h-full w-full object-cover"
         />

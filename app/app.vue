@@ -6,6 +6,14 @@ useHead({
   htmlAttrs: {
     lang: 'en-AU',
   },
+  script: [{
+    key: 'theme-init',
+    innerHTML: `try {
+      const mode = localStorage.getItem('vueuse-color-scheme') || 'auto'
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      document.documentElement.classList.toggle('dark', mode === 'dark' || (mode === 'auto' && prefersDark))
+    } catch {}`,
+  }],
 })
 
 useSeoMeta({
