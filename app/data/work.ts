@@ -21,5 +21,5 @@ export const workHistory = [
   { code: 'pounce', company: 'Pounce Marketing', position: 'Senior Full Stack Developer', from: { date: '2020-03', text: 'Mar 2020' }, to: { date: '2021-11', text: 'Nov 2021' } },
   { code: 'oo', company: 'Online Optimisation', position: 'Web Developer', from: { date: '2019-03', text: 'Mar 2019' }, to: { date: '2019-12', text: 'Dec 2019' } },
   { code: 'sl', company: 'Studyladder', position: 'Web Developer', from: { date: '2015-01', text: 'Jan 2015' }, to: { date: '2019-03', text: 'Mar 2019' } },
-  { code: 'netopia', company: 'Netopia (prev. Digital Tradies)', position: 'Web Developer', from: { date: '2014-07', text: 'Jul 2015' }, to: { date: '2015-01', text: 'Jan 2015' } },
+  { code: 'netopia', company: 'Netopia (prev. Digital Tradies)', position: 'Web Developer', from: { date: '2014-07', text: 'Jul 2014' }, to: { date: '2015-01', text: 'Jan 2015' } },
 ] satisfies WorkEntry[]
