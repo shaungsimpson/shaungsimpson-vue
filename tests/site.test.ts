@@ -67,6 +67,10 @@ test(`titles fit in a search result (${MAX_TITLE} characters)`, () => {
   }
 })
 
+test('the long title exceptions only shrink', () => {
+  assert.ok(LONG_TITLES.size <= 8, 'LONG_TITLES has grown; shorten the new title instead of adding an exception')
+})
+
 test('every grandfathered long title is still long', () => {
   for (const path of LONG_TITLES) {
     const page = pages.find((p) => p.path === path)
