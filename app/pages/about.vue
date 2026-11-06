@@ -18,7 +18,7 @@ useSeoMeta({
     </ImageTextBlock>
     <TextBlock>
       <p class="mt-6 text-base text-default">
-        I have been working in the software industry for a decade now, and have been fortunate enough to work with some amazing people and companies. I have worked in a variety of development-based roles, from design, to development,
+        I have been working in the software industry for over a decade now, and have been fortunate enough to work with some amazing people and companies. I have worked in a variety of development-based roles, from design, to development,
         to architecture and system design. I have had the blessing of working with some amazingly talented professionals from designers, to copywriters, project managers and other developers. They have all taught me something, and for that I am grateful.
       </p>
 
