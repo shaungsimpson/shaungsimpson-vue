@@ -1,7 +1,7 @@
 ---
-title: "Your Icon Font Is 97% Dead Weight: Subsetting Material Symbols"
+title: "Material Symbols Was 97% Dead Weight"
 description: "A case study in fixing a real performance problem in an existing codebase: cutting an icon font by 97%, the compromises involved, and whether an icon font is still the right choice."
-seoDescription: How to subset the Material Symbols icon font to only the icons you use, keep it current, and stop icons shifting layout while the font loads.
+seoDescription: How I cut an icon font by 97% in a live codebase, the compromises involved, and when SVG icons are the better choice.
 published: 2026-11-06
 draft: false
 tags:
