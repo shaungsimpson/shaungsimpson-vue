@@ -71,11 +71,11 @@ They did not stay there long. Over the first five runs no score moved by more th
 | | Starting threshold | Threshold now | Scores |
 |---|---:|---:|---:|
 | Performance | 80 | 90 | 94 to 98 |
-| Accessibility | 90 | 90 | 92 to 95 |
+| Accessibility | 90 | 95 | 95 to 96 |
 | Best practices | 90 | 95 | 96 to 100 |
 | SEO | 90 | 100 | 100 |
 
-SEO at 100 is deliberate: on a site where I write about SEO, any failed SEO audit should stop a deploy. Accessibility stays at 90 because the homepage scores 92, which is not great. It is now visible on every run, which is the point, and the threshold goes up once it is fixed.
+SEO at 100 is deliberate: on a site where I write about SEO, any failed SEO audit should stop a deploy. Accessibility started at 92 on the homepage, and why it went up is its own story.
 
 Each run keeps its reports for 90 days, and a log in the repository records every threshold change with a date, so the history lives with the code.
 
@@ -101,6 +101,18 @@ Automated checks catch broken links and bad canonicals. They do not catch "amazi
 
 Reading the site the way a hiring manager would, rather than the way a build tool does, turned up four typos on my About page that had been there since 2023, and a job in my work history that appeared to start six months after it ended. None of it would ever fail a test. All of it was on the page people read to decide whether I am careful. The fixes took minutes; the lesson is that a site needs a reader as well as a test suite.
 
+## Built for people, read by agents
+
+After raising the thresholds, I ran the live homepage through Google's PageSpeed Insights. It has a newer category, still in development, called agentic browsing: how well an AI agent can read and use a page. My site failed one of its two checks.
+
+The culprit was my work history. Each job was a `<dl>`, a description list, holding values with no labels: three `<dd>` elements and no `<dt>`. It looked fine, but anything reading the structure rather than the pixels got values without meaning.
+
+That was not news to my own checks. The same problem was half of the homepage's accessibility score of 92, which my Lighthouse run had reported every time. I had called it "not great" and left the threshold low enough to let it through.
+
+The fix was three hidden labels (Company, Role and Dates), visible only to screen readers and anything else reading the structure. The homepage went from 92 to 96, every page now scores at least 95, and the accessibility threshold went up to match, so this one cannot quietly come back.
+
+The lesson is that an AI agent and a screen reader read a page the same way, through its accessibility tree. Getting accessibility right was already the right thing to do; now it is also how your site gets read by the tools people increasingly browse with.
+
 ## The AI made mistakes too
 
 Most of this was done in one long session with an AI coding assistant, and it was not flawless.
@@ -115,7 +127,8 @@ The useful part was never that the tools were right. It was that they answered q
 - **The eight long titles are still long.**
 - **The linter does not run.** `eslint` was never installed, which I found during this work and left for later.
 - **Dependencies are still pinned to `latest`**, which is how the test framework broke.
-- **Accessibility on the homepage is 92.** Finding out why is the next thing to investigate.
+- **Some small grey text fails colour contrast**, including the dates in my work history. It is the last accessibility issue Lighthouse reports on the homepage.
+- **My own checks do not include agentic browsing yet.** The Lighthouse version my CI runs predates that category, so for now it is a manual check in PageSpeed Insights.
 
 ## What I would tell myself
 
