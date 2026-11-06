@@ -13,7 +13,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "lighthouse": "pnpm dlx @lhci/cli@0.15.1 autorun; status=$?; node scripts/lighthouse-summary.mjs; exit $status",
+    "check": "pnpm generate && pnpm test && pnpm lighthouse"
   },
   "dependencies": {
     "@nuxt/content": "latest",
