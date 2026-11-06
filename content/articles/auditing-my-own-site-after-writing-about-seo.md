@@ -1,6 +1,6 @@
 ---
 title: "I Wrote About SEO, Then Audited My Own Site"
-description: "An honest account of publishing an article about guarding fixes, then finding my own site had SEO bugs, no guard rails and a few months of quiet neglect."
+description: "An honest account of publishing an article about guarding fixes, then finding SEO bugs on my own site that had been live for months, and the checks I added so they stay fixed."
 seoDescription: An honest look at the SEO bugs I found on my own site after writing about web vitals, how I fixed them, and what is still not done.
 published: 2026-11-06
 draft: false
@@ -48,7 +48,7 @@ If I had stopped there, I would have fixed today's bugs and left the conditions 
 
 ## Guarding it, starting low
 
-The site had no tests and no CI. Netlify built whatever I pushed. So I added three checks that run on every pull request and every push.
+The site had no tests and no CI. Netlify built whatever I pushed. So I added three checks that run on every pull request and every change to `main`.
 
 ### The link checker, made to mean it
 
@@ -58,7 +58,7 @@ The SEO module had been running a link checker on every build since I rebuilt th
 
 The bugs only existed in the generated HTML, so the tests read the generated HTML. They check titles, descriptions, canonicals, the sitemap, drafts and 404s.
 
-Eight older articles of mine have titles over 60 characters. The honest options were to shorten them all now or admit they exist, so they sit in an exceptions list. The test fails if anyone adds to that list, and also if one gets shortened but stays on it, so the list can only shrink. I have not shortened any of them yet.
+Eight older articles of mine have titles over 60 characters. The honest options were to shorten them all now or admit they exist, so they sit in an exceptions list. A test fails if the list grows, and another fails if one gets shortened but stays on it, so the list can only shrink. I have not shortened any of them yet.
 
 I meant to use Vitest. Adding it made the package manager re-resolve every loosely pinned dependency, and one of them demanded a version that did not exist yet. The underlying issue is that my dependencies are pinned to `latest`, which is now on the list below. I used Node's built-in test runner instead, which needs no dependency at all.
 
@@ -75,7 +75,7 @@ They did not stay there long. Over the first five runs no score moved by more th
 | Best practices | 90 | 95 | 96 to 100 |
 | SEO | 90 | 100 | 100 |
 
-SEO at 100 is deliberate: on a site where I write about SEO, any failed SEO audit should stop a deploy. Accessibility started at 92 on the homepage, and why it went up is its own story.
+SEO at 100 is deliberate: on a site where I write about SEO, any failed SEO audit should stop a deploy. Accessibility went up for a different reason, covered below.
 
 Each run keeps its reports for 90 days, and a log in the repository records every threshold change with a date, so the history lives with the code.
 
@@ -107,11 +107,11 @@ After raising the thresholds, I ran the live homepage through Google's PageSpeed
 
 The culprit was my work history. Each job was a `<dl>`, a description list, holding values with no labels: three `<dd>` elements and no `<dt>`. It looked fine, but anything reading the structure rather than the pixels got values without meaning.
 
-That was not news to my own checks. The same problem was half of the homepage's accessibility score of 92, which my Lighthouse run had reported every time. I had called it "not great" and left the threshold low enough to let it through.
+That was not news to my own checks. The same problem was half of the homepage's accessibility score of 92, which my Lighthouse run had reported every time. My starting threshold of 90 let it pass. I had set it low on purpose, to allow for noise, and a low threshold hides real problems as easily as it tolerates noise.
 
-The fix was three hidden labels (Company, Role and Dates), visible only to screen readers and anything else reading the structure. The homepage went from 92 to 96, every page now scores at least 95, and the accessibility threshold went up to match, so this one cannot quietly come back.
+The fix was three hidden labels (Company, Role and Dates), visible only to screen readers and anything else reading the structure. The homepage went from 92 to 96, every page I test now scores at least 95, and the accessibility threshold went up to match, so it would fail the build if it came back.
 
-The lesson is that an AI agent and a screen reader read a page the same way, through its accessibility tree. Getting accessibility right was already the right thing to do; now it is also how your site gets read by the tools people increasingly browse with.
+The lesson is that many AI agents read a page the way a screen reader does, through its accessibility tree. Getting accessibility right was already the right thing to do; now it is also how a site gets read by the tools people increasingly browse with.
 
 ## The AI made mistakes too
 
@@ -128,12 +128,13 @@ The useful part was never that the tools were right. It was that they answered q
 - **The linter does not run.** `eslint` was never installed, which I found during this work and left for later.
 - **Dependencies are still pinned to `latest`**, which is how the test framework broke.
 - **Some small grey text fails colour contrast**, including the dates in my work history. It is the last accessibility issue Lighthouse reports on the homepage.
-- **My own checks do not include agentic browsing yet.** The Lighthouse version my CI runs predates that category, so for now it is a manual check in PageSpeed Insights.
+- **My own checks do not include agentic browsing yet.** The Lighthouse version my CI runs does not have that category yet, so for now it is a manual check in PageSpeed Insights.
 
 ## What I would tell myself
 
 - Check your own work the way you would check a colleague's. I published an article about guard rails on a site with none.
 - Test what you ship, not just what you write. Every one of these bugs lived in the generated output.
 - Start checks where you can keep them, then ratchet up. A strict check that gets disabled protects nothing.
+- A threshold below today's score tolerates noise, and it also hides real problems.
 - Personal projects rot quietly because nobody reports the bugs. That is a reason to automate the checks, not to skip them.
 - AI tools make the work faster. Asking the right questions is still the job.
