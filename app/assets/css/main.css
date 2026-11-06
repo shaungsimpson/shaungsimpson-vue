@@ -19,7 +19,7 @@
 
 .text-strong { @apply text-zinc-800 dark:text-zinc-100; }
 .text-default { @apply text-zinc-600 dark:text-zinc-400; }
-.text-subtle { @apply text-zinc-400 dark:text-zinc-500; }
+.text-subtle { @apply text-zinc-500 dark:text-zinc-400; }
 
 .shadow-edge {
   @apply bg-white/90 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10;
