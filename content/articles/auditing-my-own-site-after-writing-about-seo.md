@@ -2,7 +2,7 @@
 title: "I Wrote About SEO, Then Audited My Own Site"
 description: "An honest account of publishing an article about guarding fixes, then finding SEO bugs on my own site that had been live for months, and the checks I added so they stay fixed."
 seoDescription: An honest look at the SEO bugs I found on my own site after writing about web vitals, how I fixed them, and what is still not done.
-published: 2026-11-06
+published: 2026-11-07
 draft: false
 tags:
   - seo
