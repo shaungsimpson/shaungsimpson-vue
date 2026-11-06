@@ -50,6 +50,14 @@ export default defineNuxtConfig({
     zeroRuntime: true,
   },
 
+  linkChecker: {
+    failOnError: true,
+    report: {
+      markdown: true,
+      storage: 'reports/link-checker',
+    },
+  },
+
   nitro: {
     output: {
       publicDir: 'dist',

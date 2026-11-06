@@ -26,3 +26,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Quality check reports (Lighthouse, link checker)
+reports/
+.lighthouseci/
