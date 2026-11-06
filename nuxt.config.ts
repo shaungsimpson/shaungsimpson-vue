@@ -42,6 +42,8 @@ export default defineNuxtConfig({
     url: 'https://shaungsimpson.com',
     description: 'Portfolio and articles from Shaun Simpson, a software engineer based in Sydney, Australia.',
     defaultLocale: 'en-AU',
+    // Netlify serves prerendered pages at their trailing-slash URL, so canonicals and the sitemap must match.
+    trailingSlash: true,
   },
 
   sitemap: {
@@ -54,6 +56,14 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
+    },
+  },
+
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'append',
+      },
     },
   },
 
