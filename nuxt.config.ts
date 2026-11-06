@@ -14,7 +14,7 @@ export default defineNuxtConfig({
       markdown: {
         highlight: {
           theme: {
-            default: 'one-light',
+            default: 'github-light-high-contrast',
             dark: 'one-dark-pro',
           },
           langs: ['js', 'jsx', 'json', 'ts', 'tsx', 'vue', 'css', 'html', 'bash', 'md', 'mdc', 'yaml', 'php'],

@@ -68,7 +68,7 @@ function pageLink(page: number) {
                 <NuxtLink
                   v-if="currentPage > 1"
                   :to="pageLink(currentPage - 1)"
-                  class="text-sm font-medium text-emerald-500 transition hover:text-emerald-600"
+                  class="text-sm font-medium text-emerald-700 transition hover:text-emerald-600 dark:text-emerald-500 dark:hover:text-emerald-300"
                 >
                   Previous
                 </NuxtLink>
@@ -81,7 +81,7 @@ function pageLink(page: number) {
                 <NuxtLink
                   v-if="currentPage < pageCount"
                   :to="pageLink(currentPage + 1)"
-                  class="text-sm font-medium text-emerald-500 transition hover:text-emerald-600"
+                  class="text-sm font-medium text-emerald-700 transition hover:text-emerald-600 dark:text-emerald-500 dark:hover:text-emerald-300"
                 >
                   Next
                 </NuxtLink>

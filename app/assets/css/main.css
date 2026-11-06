@@ -27,17 +27,17 @@
 
 .prose a,
 .text-link {
-  @apply text-emerald-500 transition hover:text-emerald-300 hover:underline dark:text-emerald-500 dark:hover:text-emerald-300;
+  @apply text-emerald-700 transition hover:text-emerald-600 hover:underline dark:text-emerald-500 dark:hover:text-emerald-300;
 }
 
 nav a,
 .theme-toggle {
-  @apply text-zinc-800 transition hover:text-emerald-500 dark:text-zinc-200 dark:hover:text-emerald-400;
+  @apply text-zinc-800 transition hover:text-emerald-700 dark:text-zinc-200 dark:hover:text-emerald-400;
 }
 
 nav a.router-link-active,
 nav a.router-link-exact-active {
-  @apply pointer-events-none text-emerald-500 dark:text-emerald-500;
+  @apply pointer-events-none text-emerald-700 dark:text-emerald-500;
 }
 
 .md-prose-section {
