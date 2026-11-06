@@ -71,7 +71,7 @@ They did not stay there long. Over the first five runs no score moved by more th
 |                | Starting threshold | Threshold now |    Scores |
 | -------------- | -----------------: | ------------: | --------: |
 | Performance    |                 80 |            90 |  94 to 98 |
-| Accessibility  |                 90 |            95 |  95 to 96 |
+| Accessibility  |                 90 |           100 |       100 |
 | Best practices |                 90 |            95 | 96 to 100 |
 | SEO            |                 90 |           100 |       100 |
 
@@ -109,7 +109,7 @@ The culprit was my work history. Each job was a `<dl>`, a description list, hold
 
 That was not news to my own checks. The same problem was half of the homepage's accessibility score of 92, which my Lighthouse run had reported every time. My starting threshold of 90 let it pass. I had set it low on purpose, to allow for noise, and a low threshold hides real problems as easily as it tolerates noise.
 
-The fix was three hidden labels (Company, Role and Dates), visible only to screen readers and anything else reading the structure. The homepage went from 92 to 96, every page I test now scores at least 95, and the accessibility threshold went up to match, so it would fail the build if it came back.
+The fix was three hidden labels (Company, Role and Dates), visible only to screen readers and anything else reading the structure. The homepage went from 92 to 96. The other half was grey text too faint to read comfortably, which one change to a shared style fixed in both light and dark mode. Every page I test now scores 100 for accessibility, and the threshold went up to match, so either problem would fail the build if it came back.
 
 The lesson is that many AI agents read a page the way a screen reader does, through its accessibility tree. Getting accessibility right was already the right thing to do; now it is also how a site gets read by the tools people increasingly browse with.
 
@@ -127,7 +127,6 @@ The useful part was never that the tools were right. It was that they answered q
 - **The eight long titles are still long.**
 - **The linter does not run.** `eslint` was never installed, which I found during this work and left for later.
 - **Dependencies are still pinned to `latest`**, which is how the test framework broke.
-- **Some small grey text fails colour contrast**, including the dates in my work history. It is the last accessibility issue Lighthouse reports on the homepage.
 - **My own checks do not include agentic browsing yet.** The Lighthouse version my CI runs does not have that category yet, so for now it is a manual check in PageSpeed Insights.
 
 ## What I would tell myself
