@@ -24,7 +24,7 @@ const { data: latestArticles } = await useAsyncData('home-articles', () =>
   <div class="home">
     <ImageTextBlock title="My name is Shaun Simpson, and I like to build things!" img="/assets/img/shaun-pilot.jpeg">
       <p class="mt-6 text-base text-default">
-        I'm a software engineer and developer from Sydney, Australia. I work hard designing and building digital solutions for people to help them solve their problems and make their lives easier. I have been working with various digital technologies to help people for the last decade and I love it. I am focused on improving the aesthetics and user experience of software, and I am always looking for new ways to improve my craft.
+        I'm a senior software engineer in Sydney, Australia, with over a decade of building software that makes people's lives and work easier. I care about the whole job: maintainable code, fast and accessible pages, and honest trade-offs when the perfect fix isn't on the table. Here I write about what I build, what I learn, and the decisions behind both.
       </p>
       <SocialLinks />
     </ImageTextBlock>

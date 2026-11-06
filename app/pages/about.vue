@@ -9,25 +9,33 @@ useSeoMeta({
   <div class="about">
     <ImageTextBlock title="Hello there!" img="/assets/img/shaun-pilot.jpeg" height="w-44" width="w-44">
       <p class="mt-6 text-base text-default">
-        My name is Shaun and I am a software developer living
-        in Sydney, Australia. I have a much beloved wife, two amazing children and an incredibly spoiled and
-        treasured dog. I occasionally build things in the real world such as custom furniture too. I love to BBQ and
-        catch up with friends and family whenever I have time too, preferably with a slow cooking charcoal offset
-        bbq in the background.
+        My name is Shaun, and I'm a software engineer living in Sydney, Australia. I have a much-loved wife, two amazing
+        children and an incredibly spoiled dog. Away from the keyboard I occasionally build custom furniture, and I love
+        catching up with friends and family over a slow-cooked barbecue, ideally from a charcoal offset smoker.
       </p>
     </ImageTextBlock>
     <TextBlock>
       <p class="mt-6 text-base text-default">
-        I have been working in the software industry for over a decade now, and have been fortunate enough to work with some amazing people and companies. I have worked in a variety of development-based roles, from design, to development,
-        to architecture and system design. I have had the blessing of working with some amazingly talented professionals from designers, to copywriters, project managers and other developers. They have all taught me something, and for that I am grateful.
+        I've worked in software for over a decade, in roles spanning design, development, architecture and system design.
+        Along the way I've worked with some amazingly talented people, from designers and copywriters to project managers
+        and fellow developers. Every one of them taught me something, and I'm grateful for it.
       </p>
 
       <p class="mt-6 text-base text-default">
-        I wasn't always in the industry and I bring from my previous careers a strong focus on customer experience. It has also blessed me with perspective, as I have often been on the other end of software someone designed, and it helps me empathise with users for a better understanding of UX.
+        I came to software from other careers, and they gave me a strong focus on customer experience. I've often been on
+        the receiving end of software someone else designed, and that perspective helps me understand the people I build for.
       </p>
 
       <p class="mt-6 text-base text-default">
-        Lastly, I am an artist at heart and always looking for solutions that solve the needs and are also beautiful. I try to bring this to my work, whether it is making elegant code, simple APIs that are easy to consume or interfaces that simplify complex tasks. Small details sometimes can yield huge results.
+        I'm an artist at heart. I look for solutions that meet people's needs and are a pleasure to use, whether that's
+        elegant code, simple APIs that are easy to consume, or interfaces that make complex tasks feel simple. Small details
+        can make a big difference.
+      </p>
+
+      <p class="mt-6 text-base text-default">
+        If you'd like to see how I work, my articles are the best place to start, especially
+        <NuxtLink to="/articles/subsetting-material-symbols-icon-font/" class="text-link">cutting an icon font by 97%</NuxtLink>,
+        a case study in fixing a real problem within real constraints.
       </p>
     </TextBlock>
   </div>
