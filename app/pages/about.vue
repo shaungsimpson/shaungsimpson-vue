@@ -34,7 +34,7 @@ useSeoMeta({
 
       <p class="mt-6 text-base text-default">
         If you'd like to see how I work, my articles are the best place to start, especially
-        <NuxtLink to="/articles/subsetting-material-symbols-icon-font/" class="text-link">cutting an icon font by 97%</NuxtLink>,
+        <NuxtLink to="/articles/subsetting-material-symbols-icon-font/" class="text-link underline">cutting an icon font by 97%</NuxtLink>,
         a case study in fixing a real problem within real constraints.
       </p>
     </TextBlock>
