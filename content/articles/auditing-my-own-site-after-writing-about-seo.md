@@ -68,12 +68,12 @@ Lighthouse scores four pages on mobile on every run. The scores are currently go
 
 They did not stay there long. Over the first five runs no score moved by more than 2 points, so the next day I raised them:
 
-| | Starting threshold | Threshold now | Scores |
-|---|---:|---:|---:|
-| Performance | 80 | 90 | 94 to 98 |
-| Accessibility | 90 | 95 | 95 to 96 |
-| Best practices | 90 | 95 | 96 to 100 |
-| SEO | 90 | 100 | 100 |
+|                | Starting threshold | Threshold now |    Scores |
+| -------------- | -----------------: | ------------: | --------: |
+| Performance    |                 80 |            90 |  94 to 98 |
+| Accessibility  |                 90 |            95 |  95 to 96 |
+| Best practices |                 90 |            95 | 96 to 100 |
+| SEO            |                 90 |           100 |       100 |
 
 SEO at 100 is deliberate: on a site where I write about SEO, any failed SEO audit should stop a deploy. Accessibility went up for a different reason, covered below.
 
