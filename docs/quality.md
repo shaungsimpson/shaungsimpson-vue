@@ -29,3 +29,4 @@ Never lower a threshold to make a failing change pass. Fix the change, or explai
 | Date | Performance | Accessibility | Best practices | SEO | Note |
 |---|---:|---:|---:|---:|---|
 | 2026-11-06 | 80 | 90 | 90 | 90 | Starting point. Baseline (mobile medians): performance 94 to 98, accessibility 92 to 95, best practices 96 to 100, SEO 100. |
+| 2026-11-07 | 90 | 90 | 95 | 100 | Five CI runs moved by 2 points at most (performance 94 to 98, accessibility 92 to 95, best practices 96 to 100, SEO 100). Accessibility stays at 90 until the homepage's 92 is fixed. |
