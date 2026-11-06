@@ -68,7 +68,7 @@ Lighthouse scores four pages on mobile on every run. The scores are currently go
 
 They did not stay there long. Over the first five runs no score moved by more than 2 points, so the next day I raised them:
 
-|                | Starting threshold | Threshold now |    Scores |
+| Category       | Starting threshold | Threshold now |    Scores |
 | -------------- | -----------------: | ------------: | --------: |
 | Performance    |                 80 |            90 |  94 to 98 |
 | Accessibility  |                 90 |           100 |       100 |
@@ -109,7 +109,7 @@ The culprit was my work history. Each job was a `<dl>`, a description list, hold
 
 That was not news to my own checks. The same problem was half of the homepage's accessibility score of 92, which my Lighthouse run had reported every time. My starting threshold of 90 let it pass. I had set it low on purpose, to allow for noise, and a low threshold hides real problems as easily as it tolerates noise.
 
-The fix was three hidden labels (Company, Role and Dates), visible only to screen readers and anything else reading the structure. The homepage went from 92 to 96. The other half was grey text too faint to read comfortably, which one change to a shared style fixed in both light and dark mode. Every page I test now scores 100 for accessibility, and the threshold went up to match, so either problem would fail the build if it came back.
+The fix was three hidden labels (Company, Role and Dates), visible only to screen readers and anything else reading the structure. The homepage went from 92 to 96. The other half was grey text too faint to read comfortably, which one change to a shared style fixed in both light and dark mode. My first pass at it only proved half of that: my laptop is set to dark mode, so my local runs tested dark, while CI tested light and failed. Lighthouse now runs in both. Every page I test now scores 100 for accessibility, and the threshold went up to match, so either problem would fail the build if it came back.
 
 The lesson is that many AI agents read a page the way a screen reader does, through its accessibility tree. Getting accessibility right was already the right thing to do; now it is also how a site gets read by the tools people increasingly browse with.
 
