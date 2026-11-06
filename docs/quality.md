@@ -4,7 +4,7 @@ Every pull request and every push to `main` runs the Quality workflow (`.github/
 
 1. **Generate** the site. The link checker fails the build on a broken link.
 2. **SEO tests** (`tests/site.test.ts`) check the generated pages: titles, descriptions, canonicals, the sitemap, drafts and 404s.
-3. **Lighthouse** scores four pages on mobile, three runs each, against the thresholds in `lighthouserc.json`.
+3. **Lighthouse** scores four pages on mobile against the thresholds in `lighthouserc.json`: three runs each in light mode, then one run each in dark mode. Chrome's colour scheme is forced with `--blink-settings=preferredColorScheme` (1 is light, 0 is dark), so local runs match CI whatever your system theme.
 
 Run all three locally with `pnpm check`.
 

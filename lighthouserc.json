@@ -8,7 +8,10 @@
         "http://localhost/about/",
         "http://localhost/articles/subsetting-material-symbols-icon-font/"
       ],
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
+      "settings": {
+        "chromeFlags": "--blink-settings=preferredColorScheme=1"
+      }
     },
     "assert": {
       "assertions": {

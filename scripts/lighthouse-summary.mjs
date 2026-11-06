@@ -1,8 +1,10 @@
 // Prints the median Lighthouse score per page and category as a markdown table,
 // and appends it to the GitHub job summary when run in Actions.
+// Usage: node scripts/lighthouse-summary.mjs [reports dir] [colour scheme label]
 import { appendFileSync, readFileSync, writeFileSync } from 'node:fs'
 
-const manifest = JSON.parse(readFileSync('reports/lighthouse/manifest.json', 'utf8'))
+const [dir = 'reports/lighthouse', scheme = 'light mode'] = process.argv.slice(2)
+const manifest = JSON.parse(readFileSync(`${dir}/manifest.json`, 'utf8'))
 const categories = ['performance', 'accessibility', 'best-practices', 'seo']
 
 const runsByPage = Map.groupBy(manifest, (run) => new URL(run.url).pathname)
@@ -16,8 +18,9 @@ const table = [
   `|---|${categories.map(() => '---:').join('|')}|`,
   ...rows,
 ].join('\n')
-const summary = `### Lighthouse (mobile, median of ${manifest.length / runsByPage.size} runs)\n\n${table}\n`
+const runs = manifest.length / runsByPage.size
+const summary = `### Lighthouse (mobile, ${scheme}, ${runs === 1 ? '1 run' : `median of ${runs} runs`})\n\n${table}\n`
 
 console.log(summary)
-writeFileSync('reports/lighthouse/summary.md', summary)
+writeFileSync(`${dir}/summary.md`, summary)
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary)

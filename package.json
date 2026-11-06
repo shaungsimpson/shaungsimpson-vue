@@ -15,7 +15,7 @@
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",
     "test": "node --test \"tests/**/*.test.ts\"",
-    "lighthouse": "pnpm dlx @lhci/cli@0.15.1 autorun; status=$?; node scripts/lighthouse-summary.mjs; exit $status",
+    "lighthouse": "pnpm dlx @lhci/cli@0.15.1 autorun; light=$?; node scripts/lighthouse-summary.mjs; pnpm dlx @lhci/cli@0.15.1 autorun --collect.numberOfRuns=1 --collect.settings.chromeFlags='--blink-settings=preferredColorScheme=0' --upload.outputDir=./reports/lighthouse-dark; dark=$?; node scripts/lighthouse-summary.mjs reports/lighthouse-dark 'dark mode'; exit $((light || dark))",
     "check": "pnpm generate && pnpm test && pnpm lighthouse"
   },
   "dependencies": {
