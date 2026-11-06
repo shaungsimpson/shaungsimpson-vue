@@ -236,7 +236,7 @@ Before calling it done, I checked each claim rather than trusting the numbers:
 None of that replaced looking. With AI tools writing more of the code and more of the tests, it is easy to see a green suite and move on. I still loaded the pages on a throttled connection and checked the centred and filled icons by eye, because layout problems like the off-centre icons `width: 1em` caused are exactly what a test suite misses unless someone already knows to look for them.
 ## The results
 
-| | Before | After |
+| Aspect | Before | After |
 |---|---|---|
 | Icon font | ~625 KB, ~4,300 icons | 15 KB, 102 icons, with the `FILL` axis |
 | Discovery | after the CSS is parsed | preloaded with the document |

@@ -19,7 +19,7 @@
 
 .text-strong { @apply text-zinc-800 dark:text-zinc-100; }
 .text-default { @apply text-zinc-600 dark:text-zinc-400; }
-.text-subtle { @apply text-zinc-400 dark:text-zinc-500; }
+.text-subtle { @apply text-zinc-500 dark:text-zinc-400; }
 
 .shadow-edge {
   @apply bg-white/90 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10;
@@ -27,17 +27,17 @@
 
 .prose a,
 .text-link {
-  @apply text-emerald-500 transition hover:text-emerald-300 hover:underline dark:text-emerald-500 dark:hover:text-emerald-300;
+  @apply text-emerald-700 transition hover:text-emerald-600 hover:underline dark:text-emerald-500 dark:hover:text-emerald-300;
 }
 
 nav a,
 .theme-toggle {
-  @apply text-zinc-800 transition hover:text-emerald-500 dark:text-zinc-200 dark:hover:text-emerald-400;
+  @apply text-zinc-800 transition hover:text-emerald-700 dark:text-zinc-200 dark:hover:text-emerald-400;
 }
 
 nav a.router-link-active,
 nav a.router-link-exact-active {
-  @apply pointer-events-none text-emerald-500 dark:text-emerald-500;
+  @apply pointer-events-none text-emerald-700 dark:text-emerald-500;
 }
 
 .md-prose-section {

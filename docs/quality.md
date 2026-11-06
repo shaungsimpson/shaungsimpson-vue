@@ -4,7 +4,7 @@ Every pull request and every push to `main` runs the Quality workflow (`.github/
 
 1. **Generate** the site. The link checker fails the build on a broken link.
 2. **SEO tests** (`tests/site.test.ts`) check the generated pages: titles, descriptions, canonicals, the sitemap, drafts and 404s.
-3. **Lighthouse** scores four pages on mobile, three runs each, against the thresholds in `lighthouserc.json`.
+3. **Lighthouse** scores four pages on mobile against the thresholds in `lighthouserc.json`: three runs each in light mode, then one run each in dark mode. Chrome's colour scheme is forced with `--blink-settings=preferredColorScheme` (1 is light, 0 is dark), so local runs match CI whatever your system theme.
 
 Run all three locally with `pnpm check`.
 
@@ -26,6 +26,7 @@ Never lower a threshold to make a failing change pass. Fix the change, or explai
 
 ## Threshold log
 
-| Date | Performance | Accessibility | Best practices | SEO | Note |
-|---|---:|---:|---:|---:|---|
-| 2026-11-06 | 80 | 90 | 90 | 90 | Starting point. Baseline (mobile medians): performance 94 to 98, accessibility 92 to 95, best practices 96 to 100, SEO 100. |
+| Date       | Performance | Accessibility | Best practices | SEO | Note                                                                                                                                                                                                                                                                                                                  |
+| ---------- | ----------: | ------------: | -------------: | --: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-11-06 |          80 |            90 |             90 |  90 | Starting point. Baseline (mobile medians): performance 94 to 98, accessibility 92 to 95, best practices 96 to 100, SEO 100.                                                                                                                                                                                           |
+| 2026-11-07 |          90 |           100 |             95 | 100 | Five CI runs moved by 2 points at most (performance 94 to 98, best practices 96 to 100, SEO 100). Fixing the work history `<dl>` raised the homepage's accessibility from 92 to 96, and lifting the subtle grey text to 4.5:1 contrast took every tested page to 100; accessibility scores did not vary between runs. |
