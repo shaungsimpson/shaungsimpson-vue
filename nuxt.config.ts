@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxt/image',
     '@nuxt/eslint',
-    '@nuxt/devtools',
   ],
 
   content: {

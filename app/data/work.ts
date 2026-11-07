@@ -1,7 +1,8 @@
 export type WorkCode = 'me' | 'oo' | 'buroserv' | 'netopia' | 'pounce' | 'sl' | 'otivo'
 
 interface WorkPeriod {
-  date: string
+  // Omitted for a role that has not ended.
+  date?: string
   text: string
 }
 
@@ -14,7 +15,7 @@ export interface WorkEntry {
 }
 
 export const workHistory = [
-  { code: 'otivo', company: 'Otivo', position: 'Senior Software Engineer', from: { date: '2023-12', text: 'Dec 2023' }, to: { date: '2024', text: 'Present' } },
+  { code: 'otivo', company: 'Otivo', position: 'Senior Software Engineer', from: { date: '2023-12', text: 'Dec 2023' }, to: { text: 'Present' } },
   { code: 'me', company: 'Freelance Fullstack Developer', position: 'Web & Software Developer', from: { date: '2023-09', text: 'Sep 2023' }, to: { date: '2023-12', text: 'Dec 2023' } },
   { code: 'oo', company: 'Online Optimisation', position: 'Senior Software Engineer', from: { date: '2022-09', text: 'Sep 2022' }, to: { date: '2023-09', text: 'Sep 2023' } },
   { code: 'buroserv', company: 'Buroserv', position: 'Senior Software Engineer', from: { date: '2021-11', text: 'Nov 2021' }, to: { date: '2022-09', text: 'Sep 2022' } },
