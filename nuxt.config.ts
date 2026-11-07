@@ -46,6 +46,12 @@ export default defineNuxtConfig({
     trailingSlash: true,
   },
 
+  seo: {
+    // Build minify rewrites inline <style> in prerendered body HTML (Shiki's code colours), so it no
+    // longer matches what Vue renders and hydration fails. Runtime minify only touches <head>.
+    minify: { build: false },
+  },
+
   sitemap: {
     zeroRuntime: true,
   },
