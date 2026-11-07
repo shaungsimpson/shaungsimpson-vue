@@ -107,6 +107,14 @@ test('unpublished articles are not in the content database sent to browsers', ()
   }
 })
 
+test('the articles page links every published article', () => {
+  // Static hosting ignores query strings, so a ?page=2 list would never reach crawlers.
+  const list = readFileSync(join(DIST, 'articles/index.html'), 'utf8')
+  for (const { path } of pages.filter((p) => /^\/articles\/.+\/$/.test(p.path))) {
+    assert.ok(list.includes(`href="${path}"`), `${path} is not linked from /articles/`)
+  }
+})
+
 test('unknown URLs get a real 404, not the homepage', () => {
   assert.ok(existsSync(join(DIST, '404.html')), 'dist/404.html is missing')
   const redirects = join(DIST, '_redirects')
