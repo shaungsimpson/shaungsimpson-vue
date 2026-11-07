@@ -7,7 +7,7 @@ useSeoMeta({
 
 <template>
   <div class="about">
-    <ImageTextBlock title="Hello there!" img="/assets/img/shaun-pilot.jpeg" height="w-44" width="w-44">
+    <ImageTextBlock title="Hello there!" img="/assets/img/shaun-pilot.jpeg" size="w-44">
       <p class="mt-6 text-base text-default">
         My name is Shaun, and I'm a software engineer living in Sydney, Australia. I have a much-loved wife, two amazing
         children and an incredibly spoiled dog. Away from the keyboard I occasionally build custom furniture, and I love

@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: undefined,
@@ -8,17 +8,11 @@ const props = defineProps({
     type: String,
     default: undefined,
   },
-  height: {
-    type: String,
-    default: 'w-52',
-  },
-  width: {
+  size: {
     type: String,
     default: 'w-52',
   },
 })
-
-const imgClasses = props.height + ' ' + props.width
 </script>
 
 <template>
@@ -43,7 +37,7 @@ const imgClasses = props.height + ' ' + props.width
             sizes="208px"
             format="avif,webp,jpeg"
             preload
-            :img-attrs="{ class: ['mx-auto rounded-full bg-zinc-100 object-cover dark:bg-zinc-800', imgClasses], fetchpriority: 'high' }"
+            :img-attrs="{ class: ['mx-auto rounded-full bg-zinc-100 object-cover dark:bg-zinc-800', size], fetchpriority: 'high' }"
           />
         </div>
       </div>
