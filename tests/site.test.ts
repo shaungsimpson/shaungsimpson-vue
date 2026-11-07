@@ -115,6 +115,16 @@ test('the articles page links every published article', () => {
   }
 })
 
+test('inline styles in article bodies match the payload, so hydration does not mismatch', () => {
+  for (const { path } of pages.filter((p) => /^\/articles\/.+\/$/.test(p.path))) {
+    const body = readFileSync(join(DIST, path, 'index.html'), 'utf8').split('<body')[1] ?? ''
+    const payload = readFileSync(join(DIST, path, '_payload.json'), 'utf8')
+    for (const [, css] of body.matchAll(/<style[^>]*>([^<]+)<\/style>/g)) {
+      assert.ok(payload.includes(css), `${path} has a <style> that differs from what Vue renders`)
+    }
+  }
+})
+
 test('unknown URLs get a real 404, not the homepage', () => {
   assert.ok(existsSync(join(DIST, '404.html')), 'dist/404.html is missing')
   const redirects = join(DIST, '_redirects')
