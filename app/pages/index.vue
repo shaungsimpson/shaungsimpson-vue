@@ -5,7 +5,7 @@ useSeoMeta({
   description: 'Portfolio of Shaun Simpson, a software engineer and developer based in Sydney, Australia.',
 })
 
-const publicationDate = import.meta.dev ? '9999-12-31' : currentPublicationDate()
+const publicationDate = currentPublicationDate()
 
 const { data: latestArticles } = await useAsyncData('home-articles', () =>
   queryCollection('articles')

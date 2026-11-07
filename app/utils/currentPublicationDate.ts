@@ -1,7 +1,12 @@
 /**
  * Returns the current calendar date for article publishing in Sydney.
+ * In dev it returns a far-future date so scheduled articles can be previewed.
  */
 export function currentPublicationDate(): string {
+  if (import.meta.dev) {
+    return '9999-12-31'
+  }
+
   const parts = new Intl.DateTimeFormat('en-AU', {
     timeZone: 'Australia/Sydney',
     year: 'numeric',
