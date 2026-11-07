@@ -18,7 +18,7 @@ The tests enforce these; keep them true.
 - **Every page has a `<title>` and a meta description.**
 - **Titles fit in a search result:** 60 characters including " | Shaun Simpson". Older articles listed in `LONG_TITLES` are exceptions; shorten one and remove it, never add one.
 - **Missing pages return a real 404.** No catch-all `200` rewrite in `public/_redirects`.
-- **Drafts stay unpublished.** `draft: true` articles are never generated or listed in the sitemap.
+- **Drafts stay unpublished.** `draft: true` and future-dated articles are left out of the content collection (`content.config.ts`), so they are never generated, listed in the sitemap or shipped in `sql_dump.txt`.
 
 ## Articles
 
