@@ -6,6 +6,7 @@ import assert from 'node:assert/strict'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { test } from 'node:test'
+import { gunzipSync } from 'node:zlib'
 
 const SITE = 'https://shaungsimpson.com'
 const DIST = 'dist'
@@ -90,6 +91,19 @@ test('draft articles are not published', () => {
   for (const path of drafts) {
     assert.ok(!pages.some((p) => p.path === path), `${path} is a draft but was generated`)
     assert.ok(!sitemap.includes(`${SITE}${path}`), `${path} is a draft but is in the sitemap`)
+  }
+})
+
+test('unpublished articles are not in the content database sent to browsers', () => {
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Sydney' }).format(new Date())
+  const dump = readFileSync(join(DIST, '__nuxt_content/articles/sql_dump.txt'), 'utf8')
+  const rows = gunzipSync(Buffer.from(dump, 'base64')).toString()
+  for (const file of readdirSync('content/articles')) {
+    const source = readFileSync(join('content/articles', file), 'utf8')
+    const published = source.match(/^published:\s*['"]?(\d{4}-\d{2}-\d{2})/m)?.[1] ?? ''
+    if (/^draft:\s*true$/m.test(source) || published > today) {
+      assert.ok(!rows.includes(`'articles/articles/${file}'`), `${file} is unpublished but its full text is in sql_dump.txt`)
+    }
   }
 })
 
