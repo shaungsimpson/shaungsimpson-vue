@@ -2,10 +2,10 @@
 import { currentPublicationDate } from '~/utils/currentPublicationDate'
 
 const route = useRoute()
-const siteUrl = 'https://shaungsimpson.com'
+const siteUrl = useSiteConfig().url
 const socialImage = siteUrl + '/assets/img/shaun-pilot.jpeg'
 const articlePath = `/articles/${route.params.slug}`
-const publicationDate = import.meta.dev ? '9999-12-31' : currentPublicationDate()
+const publicationDate = currentPublicationDate()
 
 const { data: article } = await useAsyncData(articlePath, () =>
   queryCollection('articles')
