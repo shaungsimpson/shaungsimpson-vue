@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const siteUrl = 'https://shaungsimpson.com'
+const siteUrl = useSiteConfig().url
 const socialImage = siteUrl + '/assets/img/shaun-pilot.jpeg'
 
 useHead({
@@ -39,7 +39,7 @@ useSchemaOrg([
     jobTitle: 'Software Engineer',
     sameAs: [
       'https://github.com/shaungsimpson',
-      'https://www.linkedin.com/in/shaungsimpson',
+      'https://www.linkedin.com/in/shaun-simpson-66983759',
       'https://twitter.com/shaungsimpson',
     ],
   }),
