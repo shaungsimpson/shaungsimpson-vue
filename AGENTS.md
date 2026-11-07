@@ -24,6 +24,7 @@ The tests enforce these; keep them true.
 
 - Frontmatter follows `content.config.ts`. Use `seoDescription` (160 characters or fewer) when the search snippet should differ from `description`.
 - Set `draft: true` until the article is ready. The repository is public, so a pushed draft can still be read on GitHub.
+- To schedule an article, merge it with a future `published` date. The Scheduled publish workflow rebuilds the site just after midnight in Sydney on that date.
 - Write in Australian English (colour, behaviour, centre). UI text is in sentence case.
 - Align Markdown tables in the source, in articles and docs alike: pad every cell so the pipes line up and the table reads as a table without rendering. Right-align number columns (`---:`) and pad them to match.
 - Keep work articles generic: no employer, client or colleague names, ticket numbers, internal URLs or private code copied verbatim.

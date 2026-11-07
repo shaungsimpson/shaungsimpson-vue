@@ -1,0 +1,35 @@
+name: Scheduled publish
+
+# Pages are built once per deploy, so an article dated in the future only appears after the next
+# build. This rebuilds on days an article is due, and skips the rest to save Netlify deploys.
+# Needs the NETLIFY_BUILD_HOOK secret (Netlify: Build & deploy > Build hooks). GitHub disables
+# scheduled workflows after 60 days without commits; re-enable it from the Actions tab.
+on:
+  schedule:
+    - cron: '5 14 * * *' # 00:05 AEST / 01:05 AEDT
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Rebuild if an article publishes today
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Trigger a Netlify build
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          today=$(TZ=Australia/Sydney date +%F)
+          due=$(grep -lE "^published: ['\"]?$today" content/articles/*.md | xargs -r grep -L '^draft: true' || true)
+          if [ -z "$due" ]; then
+            echo "Nothing due on $today"
+            exit 0
+          fi
+          echo "Publishing on $today: $due"
+          curl -fsS -X POST -d '{}' "$HOOK"
